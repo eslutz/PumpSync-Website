@@ -1,0 +1,15 @@
+{
+  "name": "PumpSync",
+  "short_name": "PumpSync",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7fbfd",
+  "theme_color": "#155e75",
+  "icons": [
+    {
+      "src": "/assets/pumpsync-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+---
+layout: layouts/base.njk
+title: "Accessibility | PumpSync"
+description: "Accessibility support and reporting path for PumpSync."
+canonical: "https://pumpsync.ericslutz.dev/accessibility/"
+navCurrent: "accessibility"
+innerPage: true
+---
+
+<main id="main" class="page-main">
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Accessibility</h1>
+      <p>PumpSync is designed as an iOS app that follows Apple platform conventions for readable, permission-oriented health-data workflows.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap content-grid">
+      <div>
+        <article class="content-block">
+          <h2>Accessibility goals</h2>
+          <p>PumpSync uses native SwiftUI and system controls where practical so the app can inherit platform accessibility behavior for forms, settings, permission prompts, and Apple Health workflows.</p>
+          <p>This page avoids claiming a feature is fully verified until release testing confirms it for the shipped build.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Supported areas</h2>
+          <ul>
+            <li>VoiceOver labels, hints, traits, and values for primary controls.</li>
+            <li>Voice Control names for buttons, forms, settings, and repeated actions.</li>
+            <li>Dynamic Type support where platform conventions allow.</li>
+            <li>System light and dark appearance.</li>
+            <li>State communication that does not rely on color alone.</li>
+            <li>Reduced Motion support by avoiding custom motion-heavy interfaces.</li>
+            <li>Clear warnings around medical disclaimers and sensitive support information.</li>
+          </ul>
+        </article>
+
+        <article class="content-block">
+          <h2>Health and permission flows</h2>
+          <p>Apple Health authorization, Tandem credential entry, subscription restore, self-hosted backend entry, and sync status screens should remain readable with assistive technologies and larger text settings.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Report an accessibility issue</h2>
+          <p>Report accessibility issues through the <a href="/support/">support page</a>. Include your device, iOS version, assistive technology, app version, the screen or flow, and the expected result. Do not include Tandem passwords, screenshots containing health data, or other sensitive medical details.</p>
+        </article>
+      </div>
+
+      <aside class="side-panel" aria-labelledby="accessibility-links">
+        <h2 id="accessibility-links">Related</h2>
+        <ul>
+          <li><a href="/support/">Support</a></li>
+          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href="/privacy/data-deletion/">Data Deletion</a></li>
+          <li><a href="/age-suitability/">Age Suitability</a></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</main>

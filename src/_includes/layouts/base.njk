@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    {% if description %}<meta name="description" content="{{ description }}">{% endif %}
+    {% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+    <link rel="icon" type="image/svg+xml" href="/assets/pumpsync-mark.svg">
+    <link rel="apple-touch-icon" href="/assets/pumpsync-mark.svg">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="stylesheet" href="/assets/styles.css">
+    {% if canonical %}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ canonical }}">
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:site_name" content="PumpSync">
+    {% endif %}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header{% if innerPage %} inner-page{% endif %}">
+      <nav class="nav-wrap" aria-label="Primary navigation">
+        <a class="brand" href="/"{% if navCurrent == "home" %} aria-current="page"{% endif %} aria-label="PumpSync home">
+          <img src="/assets/pumpsync-mark.svg" alt="" width="36" height="36">
+          <span>PumpSync</span>
+        </a>
+        <div class="nav-links">
+          <a href="/privacy/"{% if navCurrent == "privacy" %} aria-current="page"{% endif %}>Privacy</a>
+          <a href="/support/"{% if navCurrent == "support" %} aria-current="page"{% endif %}>Support</a>
+          <a href="https://github.com/eslutz/PumpSync/discussions" target="_blank" rel="noopener noreferrer">Discussions</a>
+          <a href="https://github.com/eslutz/PumpSync/wiki" target="_blank" rel="noopener noreferrer">Wiki</a>
+        </div>
+      </nav>
+    </header>
+
+    {{ content | safe }}
+
+    <footer class="site-footer">
+      <div class="footer-groups">
+        <nav class="footer-group" aria-label="Site pages">
+          <h2>Site</h2>
+          <a href="/">Home</a>
+          <a href="/support/">Support</a>
+        </nav>
+        <nav class="footer-group" aria-label="Site policies">
+          <h2>Policies</h2>
+          <a href="/privacy/">Privacy</a>
+          <a href="/privacy/data-deletion/">Data Deletion</a>
+          <a href="/accessibility/">Accessibility</a>
+          <a href="/age-suitability/">Age Suitability</a>
+        </nav>
+        <nav class="footer-group" aria-label="Website project links">
+          <h2>Website</h2>
+          <a href="https://github.com/eslutz/PumpSync-Website" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://github.com/eslutz/PumpSync-Website/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+        </nav>
+        <nav class="footer-group" aria-label="PumpSync project links">
+          <h2>Project</h2>
+          <a href="https://github.com/eslutz/PumpSync" target="_blank" rel="noopener noreferrer">Source</a>
+          <a href="https://github.com/eslutz/PumpSync/wiki" target="_blank" rel="noopener noreferrer">Wiki</a>
+          <a href="https://github.com/eslutz/PumpSync/discussions" target="_blank" rel="noopener noreferrer">Discussions</a>
+          <a href="https://github.com/eslutz/PumpSync/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+        </nav>
+        <nav class="footer-group" aria-label="Developer">
+          <h2>Developer</h2>
+          <a href="https://ericslutz.dev" target="_blank" rel="noopener noreferrer">ericslutz.dev</a>
+        </nav>
+        <nav class="footer-group" aria-label="Related services">
+          <h2>Related Services</h2>
+          <a href="https://www.tandemdiabetes.com/" target="_blank" rel="noopener noreferrer">Tandem Diabetes Care</a>
+          <a href="https://www.apple.com/ios/health/" target="_blank" rel="noopener noreferrer">Apple Health</a>
+        </nav>
+      </div>
+      <div class="footer-legal">
+        <p>PumpSync is not affiliated with, endorsed by, or sponsored by Tandem Diabetes Care.</p>
+        <p>PumpSync is not a medical device and does not provide medical advice, diagnosis, treatment, or dosing recommendations.</p>
+        <p>&copy; 2026 Eric Slutz. PumpSync is source-available / All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

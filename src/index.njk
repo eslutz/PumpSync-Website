@@ -1,0 +1,112 @@
+---
+layout: layouts/base.njk
+title: "PumpSync"
+description: "A privacy-first Tandem Source to Apple Health sync app with hosted and self-hosted backend options."
+canonical: "https://pumpsync.ericslutz.dev/"
+navCurrent: "home"
+---
+
+<main id="main">
+  <section class="hero" aria-label="PumpSync overview">
+    <div class="hero-content">
+      <div>
+        <h1>PumpSync</h1>
+        <p class="lead">A privacy-first Tandem Source to Apple Health sync app for people who want insulin and carbohydrate records in Apple Health without durable server-side storage of Tandem credentials or health payloads.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="/support/">Get support</a>
+          <a class="button secondary" href="/privacy/">Read privacy details</a>
+        </div>
+      </div>
+      <div class="sync-card" aria-label="PumpSync data flow">
+        <div class="sync-card-header">
+          <strong>Sync model</strong>
+          <span class="status-dot" aria-hidden="true"></span>
+        </div>
+        <div class="sync-line">
+          <div class="sync-icon" aria-hidden="true">1</div>
+          <div>
+            <h3>Tandem Source</h3>
+            <p>Credentials stay in the iOS Keychain and are sent only during an active HTTPS sync request.</p>
+          </div>
+        </div>
+        <div class="sync-line">
+          <div class="sync-icon" aria-hidden="true">2</div>
+          <div>
+            <h3>PumpSync backend</h3>
+            <p>The backend performs request-time sync work and does not persist Tandem credentials, tokens, raw events, or normalized samples.</p>
+          </div>
+        </div>
+        <div class="sync-line">
+          <div class="sync-icon" aria-hidden="true">3</div>
+          <div>
+            <h3>Apple Health</h3>
+            <p>Insulin and carbohydrate samples are written only after the user grants Apple Health permission.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built for controlled health-data portability.</h2>
+        <p>PumpSync is designed around explicit user action, Apple platform privacy controls, and minimal backend retention.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>Hosted or self-hosted</h3>
+          <p>Use PumpSync Hosted through an App Store subscription, or point the app at a backend you operate yourself.</p>
+        </article>
+        <article class="feature">
+          <h3>Device-only credentials</h3>
+          <p>Tandem credentials are stored by the iOS app in the device Keychain with device-only accessibility.</p>
+        </article>
+        <article class="feature">
+          <h3>HealthKit permission first</h3>
+          <p>PumpSync writes insulin and carbohydrate samples only after Apple Health access is granted by the user.</p>
+        </article>
+        <article class="feature">
+          <h3>No advertising use</h3>
+          <p>PumpSync does not use HealthKit data for advertising, marketing, tracking, or data mining.</p>
+        </article>
+        <article class="feature">
+          <h3>Request-time processing</h3>
+          <p>Raw Tandem events and normalized samples are discarded after the sync response and Apple Health write flow complete.</p>
+        </article>
+        <article class="feature">
+          <h3>Not medical advice</h3>
+          <p>PumpSync is not a medical device and does not provide diagnosis, treatment, or dosing recommendations.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Two backend paths, one privacy boundary.</h2>
+        <p>The hosted path verifies App Store subscription entitlement before issuing a short-lived service token. The self-hosted path lets users operate their own backend and storage.</p>
+      </div>
+      <ul class="fact-list">
+        <li>Hosted subscription state, installation mapping, rate limits, sync attempts, and App Store notification idempotency are stored in backend operational storage.</li>
+        <li>Self-hosted users control their own backend data and should manage deletion directly in their own storage account or database.</li>
+        <li>Sign in with Apple is intentionally not part of the hosted access flow; durable hosted state is keyed by App Store transaction and installation identifiers.</li>
+        <li>Credential-bearing Tandem sync requests are not persisted as durable idempotency records.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="callout">
+        <h2>Support and policy pages for App Review and users.</h2>
+        <p class="section-intro">Use these public pages for support, privacy details, data deletion instructions, accessibility information, and age-suitability context.</p>
+        <div class="callout-actions">
+          <a class="button primary" href="/support/">Open support</a>
+          <a class="button" href="/privacy/data-deletion/">Data deletion</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

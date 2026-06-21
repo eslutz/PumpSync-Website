@@ -1,0 +1,79 @@
+---
+layout: layouts/base.njk
+title: "Account and Data Deletion | PumpSync"
+description: "Account and data deletion instructions for PumpSync."
+canonical: "https://pumpsync.ericslutz.dev/privacy/data-deletion/"
+navCurrent: "privacy"
+innerPage: true
+---
+
+<main id="main" class="page-main">
+  <section class="page-hero">
+    <div class="wrap">
+      <h1>Account and Data Deletion</h1>
+      <p>PumpSync stores minimal hosted subscription and installation metadata and does not persist Tandem credentials, Tandem tokens, raw Tandem events, or normalized Tandem samples on the backend.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap content-grid">
+      <div>
+        <article class="content-block">
+          <h2>Effective date</h2>
+          <p>June 18, 2026</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Delete Tandem credentials from the device</h2>
+          <p>In the PumpSync app:</p>
+          <ol>
+            <li>Open Settings.</li>
+            <li>Open the Tandem section.</li>
+            <li>Delete the saved Tandem credentials.</li>
+          </ol>
+          <p>Deleting Tandem credentials prevents future syncs until credentials are added again.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Revoke Apple Health access</h2>
+          <p>In iOS:</p>
+          <ol>
+            <li>Open Settings.</li>
+            <li>Open Health.</li>
+            <li>Open Data Access &amp; Devices.</li>
+            <li>Select PumpSync.</li>
+            <li>Disable PumpSync access or remove PumpSync data as desired.</li>
+          </ol>
+          <p>Samples already written to Apple Health are controlled by Apple Health. Deleting PumpSync does not automatically delete samples already written to Apple Health.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Delete PumpSync Hosted metadata</h2>
+          <p>To request deletion of PumpSync hosted backend metadata, email <a href="mailto:support@ericslutz.dev?subject=PUMPSYNC%20SUPPORT">support@ericslutz.dev</a> or use the <a href="/support/">support page</a>.</p>
+          <p>Include the PumpSync installation ID shown in Settings, the App Store subscription original transaction ID if available from Apple purchase history, or the Apple ID receipt details needed to locate the subscription through App Store support tooling.</p>
+          <p>Do not include Tandem passwords, Tandem tokens, screenshots containing health data, or other sensitive medical details in the request.</p>
+          <p>Deletion covers PumpSync hosted server-side metadata associated with the subscription or installation, subject to records PumpSync must retain for security, fraud prevention, legal compliance, billing, dispute handling, or service integrity.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Self-hosted users</h2>
+          <p>Self-hosted users control their own backend data and should delete data directly from their self-hosted storage account or database.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Nonprod and TestFlight data</h2>
+          <p>For nonprod and TestFlight builds, PumpSync may reset backend data during testing. Testers can request deletion using the same support path above.</p>
+        </article>
+      </div>
+
+      <aside class="side-panel" aria-labelledby="deletion-links">
+        <h2 id="deletion-links">Related</h2>
+        <ul>
+          <li><a href="/privacy/">Privacy Policy</a></li>
+          <li><a href="/support/">Support</a></li>
+          <li><a href="/accessibility/">Accessibility</a></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+</main>
