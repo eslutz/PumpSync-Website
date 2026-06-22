@@ -131,6 +131,8 @@ test("support email links use request-specific subjects", async () => {
   const support = await page("support/index.html");
   const deletion = await page("privacy/data-deletion/index.html");
 
+  assert.match(deletion, /Tap Delete Data Request\./);
+  assert.match(deletion, /copy the Installation ID\./);
   assert.match(support, /mailto:support@ericslutz\.dev\?subject=PumpSync%20Support/);
   assert.match(deletion, /mailto:support@ericslutz\.dev\?subject=DELETION%20REQUEST%20-%20PumpSync%20Support/);
   assert.doesNotMatch(deletion, /or use the <a href="\/support\/">support page<\/a>/);
