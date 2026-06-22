@@ -43,8 +43,8 @@ test("home page navigation matches the PumpSync support pattern", async () => {
   const nav = requiredBlock(html, /<div class="nav-links">([\s\S]*?)<\/div>/, "main navigation links");
 
   assert.deepEqual(linksFrom(nav), [
-    { href: "/privacy/", label: "Privacy" },
     { href: "/support/", label: "Support" },
+    { href: "/privacy/", label: "Privacy" },
     { href: `${appRepo}/discussions`, label: "Discussions" },
     { href: `${appRepo}/wiki`, label: "Wiki" },
   ]);
