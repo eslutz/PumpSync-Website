@@ -3,7 +3,6 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const siteUrl = "https://pumpsync.ericslutz.dev";
-const websiteRepo = "https://github.com/eslutz/PumpSync-Website";
 const appRepo = "https://github.com/eslutz/PumpSync";
 
 async function page(path) {
@@ -70,15 +69,30 @@ test("site chrome uses the PumpSync app icon assets", async () => {
   await assert.rejects(readFile("_site/assets/pumpsync-mark.svg"));
 });
 
-test("footer project and policy links include website and app repositories", async () => {
+test("footer project and policy links include app repository", async () => {
   const html = await page("index.html");
   const footer = requiredBlock(html, /<div class="footer-groups">([\s\S]*?)<\/div>/, "footer groups");
   const links = linksFrom(footer);
 
-  assert.ok(links.some((link) => link.href === `${websiteRepo}` && link.label === "GitHub"));
-  assert.ok(links.some((link) => link.href === `${websiteRepo}/issues` && link.label === "Issues"));
-  assert.ok(links.some((link) => link.href === `${appRepo}` && link.label === "Source"));
+  assert.doesNotMatch(footer, /<h2>Website<\/h2>/);
+  assert.ok(links.some((link) => link.href === `${appRepo}` && link.label === "GitHub"));
   assert.ok(links.some((link) => link.href === "/privacy/data-deletion/" && link.label === "Data Deletion"));
+});
+
+test("content pages render without side menus", async () => {
+  const routes = [
+    "support/index.html",
+    "privacy/index.html",
+    "privacy/data-deletion/index.html",
+    "accessibility/index.html",
+    "age-suitability/index.html",
+  ];
+
+  for (const route of routes) {
+    const html = await page(route);
+    assert.doesNotMatch(html, /class="side-panel"/, `${route} should not include a side panel`);
+    assert.doesNotMatch(html, /class="wrap content-grid"/, `${route} should not use a two-column content grid`);
+  }
 });
 
 test("required canonical URLs use the public domain and trailing slash", async () => {

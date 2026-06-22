@@ -364,7 +364,6 @@ h3 {
 
 .feature,
 .resource,
-.side-panel,
 .callout {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -373,8 +372,7 @@ h3 {
 }
 
 .feature,
-.resource,
-.side-panel {
+.resource {
   padding: 1.35rem;
 }
 
@@ -434,13 +432,6 @@ h3 {
   margin: 1.2rem 0 0;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  align-items: start;
-  gap: clamp(2rem, 5vw, 4rem);
-}
-
 .content {
   max-width: 860px;
 }
@@ -475,23 +466,6 @@ h3 {
   padding-left: 1.25rem;
 }
 
-.side-panel {
-  position: sticky;
-  top: 96px;
-}
-
-.side-panel h2 {
-  font-size: 1.18rem;
-  margin-bottom: 0.8rem;
-}
-
-.side-panel ul {
-  display: grid;
-  gap: 0.55rem;
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
 .site-footer {
   border-top: 1px solid var(--line);
   width: min(var(--max), calc(100% - 40px));
@@ -502,7 +476,7 @@ h3 {
 
 .footer-groups {
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(5, auto);
   justify-content: start;
   gap: 2rem clamp(2rem, 5vw, 4.5rem);
 }
@@ -554,8 +528,7 @@ h3 {
     justify-content: flex-start;
   }
 
-  .hero-content,
-  .content-grid {
+  .hero-content {
     grid-template-columns: 1fr;
   }
 
@@ -574,9 +547,6 @@ h3 {
     grid-template-columns: 1fr 1fr;
   }
 
-  .side-panel {
-    position: static;
-  }
 }
 
 @media (max-width: 560px) {
