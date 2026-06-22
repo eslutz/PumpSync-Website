@@ -54,14 +54,20 @@ test("home page navigation matches the PumpSync support pattern", async () => {
 test("site chrome uses the PumpSync app icon assets", async () => {
   const html = await page("index.html");
   const manifest = JSON.parse(await page("manifest.webmanifest"));
+  const favicon = await readFile("_site/favicon.ico");
 
+  assert.match(html, /<link rel="icon" href="\/favicon\.ico" sizes="any">/);
+  assert.match(html, /<link rel="icon" type="image\/png" sizes="16x16" href="\/assets\/favicon-16\.png">/);
   assert.match(html, /<link rel="icon" type="image\/png" sizes="32x32" href="\/assets\/favicon-32\.png">/);
+  assert.match(html, /<link rel="icon" type="image\/png" sizes="48x48" href="\/assets\/favicon-48\.png">/);
   assert.match(html, /<link rel="apple-touch-icon" sizes="180x180" href="\/assets\/apple-touch-icon\.png">/);
   assert.match(html, /<img src="\/assets\/pumpsync-app-icon\.png" alt="" width="36" height="36">/);
   assert.deepEqual(manifest.icons, [
     { src: "/assets/icon-192.png", sizes: "192x192", type: "image/png" },
     { src: "/assets/icon-512.png", sizes: "512x512", type: "image/png" },
   ]);
+  assert.ok(favicon.length > 0);
+  await assert.rejects(readFile("_site/assets/pumpsync-mark.svg"));
 });
 
 test("footer project and policy links include website and app repositories", async () => {

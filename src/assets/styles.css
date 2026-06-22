@@ -1,35 +1,40 @@
 :root {
   color-scheme: light dark;
-  --ink: #14242b;
-  --ink-soft: #526872;
+  --ink: #0b2438;
+  --ink-soft: #506a7d;
   --surface: #ffffff;
-  --surface-alt: #f3f8fa;
-  --surface-tint: #eaf6f5;
-  --line: #d7e5e9;
-  --teal: #155e75;
-  --teal-dark: #0d3d4c;
-  --mint: #1f9d83;
-  --amber: #f5b942;
-  --blue: #2d72d9;
+  --surface-alt: #f1f8ff;
+  --surface-tint: #e4f7ff;
+  --line: #cddfec;
+  --teal: #007fc6;
+  --teal-dark: #005aab;
+  --mint: #05bfae;
+  --amber: #00a9d6;
+  --blue: #006fbd;
+  --blue-deep: #013c9a;
+  --brand-gradient: linear-gradient(135deg, #08c7b7 0%, #008fcb 45%, #0147a8 100%);
+  --brand-gradient-soft: linear-gradient(135deg, rgb(8 199 183 / 18%) 0%, rgb(0 143 203 / 14%) 48%, rgb(1 71 168 / 10%) 100%);
   --danger: #b54343;
-  --shadow: 0 18px 52px rgb(20 36 43 / 12%);
+  --shadow: 0 18px 52px rgb(1 71 168 / 12%);
   --radius: 8px;
   --max: 1160px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ink: #edf8fb;
-    --ink-soft: #adc1c9;
-    --surface: #0c171c;
-    --surface-alt: #111f25;
-    --surface-tint: #10272e;
+    --ink: #eef9ff;
+    --ink-soft: #aac4d8;
+    --surface: #081724;
+    --surface-alt: #0c2133;
+    --surface-tint: #0c3046;
     --line: rgb(255 255 255 / 14%);
-    --teal: #70d4ec;
-    --teal-dark: #b5ebf6;
-    --mint: #79dbc7;
-    --amber: #f7c866;
-    --blue: #87b8ff;
+    --teal: #3cc9f2;
+    --teal-dark: #8fe8ff;
+    --mint: #4ee1d1;
+    --amber: #6ad7ff;
+    --blue: #7eb8ff;
+    --blue-deep: #a7d0ff;
+    --brand-gradient-soft: linear-gradient(135deg, rgb(8 199 183 / 20%) 0%, rgb(0 143 203 / 18%) 48%, rgb(1 71 168 / 22%) 100%);
     --danger: #ff9c9c;
     --shadow: 0 18px 52px rgb(0 0 0 / 36%);
   }
@@ -126,7 +131,8 @@ button:focus-visible {
 .brand img {
   width: 36px;
   height: 36px;
-  border-radius: var(--radius);
+  border-radius: 9px;
+  box-shadow: 0 8px 18px rgb(1 71 168 / 18%);
 }
 
 .nav-links {
@@ -154,9 +160,8 @@ button:focus-visible {
 
 .hero {
   background:
-    radial-gradient(circle at 86% 16%, rgb(31 157 131 / 20%), transparent 34%),
-    radial-gradient(circle at 20% 92%, rgb(45 114 217 / 12%), transparent 32%),
-    linear-gradient(180deg, #f7fbfd 0%, #ffffff 78%);
+    var(--brand-gradient-soft),
+    linear-gradient(180deg, #f5fbff 0%, #ffffff 78%);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
@@ -164,9 +169,8 @@ button:focus-visible {
 @media (prefers-color-scheme: dark) {
   .hero {
     background:
-      radial-gradient(circle at 86% 16%, rgb(31 157 131 / 18%), transparent 34%),
-      radial-gradient(circle at 20% 92%, rgb(45 114 217 / 16%), transparent 32%),
-      linear-gradient(180deg, #0c171c 0%, #0e1b21 78%);
+      var(--brand-gradient-soft),
+      linear-gradient(180deg, #081724 0%, #0c2133 78%);
   }
 }
 
@@ -248,9 +252,10 @@ h3 {
 
 .button.primary,
 .button.dark {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--brand-gradient);
+  border-color: color-mix(in srgb, var(--blue) 78%, #ffffff);
   color: #ffffff;
+  box-shadow: 0 12px 28px rgb(1 71 168 / 18%);
 }
 
 .button.secondary {
@@ -262,7 +267,9 @@ h3 {
   position: relative;
   min-height: 420px;
   padding: clamp(1.15rem, 3vw, 2rem);
-  background: var(--surface);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-tint) 38%, transparent), transparent 42%),
+    var(--surface);
   border: 1px solid var(--line);
   border-radius: 18px;
   box-shadow: var(--shadow);
@@ -290,7 +297,7 @@ h3 {
   width: 12px;
   height: 12px;
   border-radius: 999px;
-  background: var(--mint);
+  background: var(--brand-gradient);
   box-shadow: 0 0 0 6px color-mix(in srgb, var(--mint) 18%, transparent);
 }
 
@@ -309,8 +316,8 @@ h3 {
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  background: var(--surface-tint);
-  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface-tint) 82%, #ffffff);
+  border: 1px solid color-mix(in srgb, var(--blue) 18%, var(--line));
   color: var(--teal-dark);
   font-weight: 900;
 }
@@ -399,13 +406,13 @@ h3 {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: var(--amber);
+  background: var(--brand-gradient);
 }
 
 .callout {
   padding: clamp(1.4rem, 4vw, 2.2rem);
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--teal) 14%, transparent), transparent 58%),
+    var(--brand-gradient-soft),
     var(--surface);
 }
 

@@ -3,8 +3,8 @@
   "short_name": "PumpSync",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f7fbfd",
-  "theme_color": "#155e75",
+  "background_color": "#f5fbff",
+  "theme_color": "#006fbd",
   "icons": [
     {
       "src": "/assets/icon-192.png",
