@@ -119,6 +119,40 @@ test("privacy and support pages link to public data deletion instructions", asyn
   assert.match(support, /href="\/privacy\/data-deletion\/"/);
 });
 
+test("privacy contact path uses support page without direct email", async () => {
+  const privacy = await page("privacy/index.html");
+
+  assert.match(privacy, /For privacy, deletion, or support requests, use the <a href="\/support\/">support page<\/a>\./);
+  assert.doesNotMatch(privacy, /mailto:/);
+  assert.doesNotMatch(privacy, /support@ericslutz\.dev/);
+});
+
+test("support email links use request-specific subjects", async () => {
+  const support = await page("support/index.html");
+  const deletion = await page("privacy/data-deletion/index.html");
+
+  assert.match(support, /mailto:support@ericslutz\.dev\?subject=PumpSync%20Support/);
+  assert.match(deletion, /mailto:support@ericslutz\.dev\?subject=DELETION%20REQUEST%20-%20PumpSync%20Support/);
+  assert.doesNotMatch(deletion, /or use the <a href="\/support\/">support page<\/a>/);
+  assert.doesNotMatch(`${support}\n${deletion}`, /PUMPSYNC%20SUPPORT|PUMPSYNC SUPPORT/);
+});
+
+test("rendered pages keep platform language device agnostic", async () => {
+  const routes = [
+    "index.html",
+    "support/index.html",
+    "privacy/index.html",
+    "privacy/data-deletion/index.html",
+    "accessibility/index.html",
+    "age-suitability/index.html",
+  ];
+
+  for (const route of routes) {
+    const html = await page(route);
+    assert.doesNotMatch(html, /iOS app|iOS Keychain|In iOS:|iOS version|iPhone|iPad/);
+  }
+});
+
 test("rendered pages do not expose stale repo-internal legal paths", async () => {
   const routes = [
     "index.html",
