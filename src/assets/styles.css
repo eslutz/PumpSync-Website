@@ -131,7 +131,6 @@ button:focus-visible {
 .brand img {
   width: 36px;
   height: 36px;
-  border-radius: 9px;
   box-shadow: 0 8px 18px rgb(1 71 168 / 18%);
 }
 
