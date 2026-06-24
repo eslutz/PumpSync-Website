@@ -4,6 +4,8 @@ Static public website for PumpSync at <https://pumpsync.ericslutz.dev>.
 
 The site is built with [Eleventy](https://www.11ty.dev/) from Nunjucks templates in `src/`. Shared page chrome, navigation, footer links, and metadata live in `src/_includes/layouts/base.njk`. The output is plain HTML and CSS with no runtime JavaScript.
 
+Project documentation lives in the [PumpSync wiki](https://github.com/eslutz/PumpSync/wiki). Submit bugs, feature requests, documentation issues, and website issues to the [main PumpSync issues page](https://github.com/eslutz/PumpSync/issues).
+
 ## Site Structure
 
 - `src/index.njk` - home page.
@@ -26,7 +28,7 @@ The site is built with [Eleventy](https://www.11ty.dev/) from Nunjucks templates
 
 ## Support Intake
 
-GitHub Issues in the main PumpSync repository are the primary support route. Email is secondary.
+Submit bugs, feature requests, documentation issues, and website issues to the [main PumpSync issues page](https://github.com/eslutz/PumpSync/issues). Email is secondary.
 
 ## Local Development
 
