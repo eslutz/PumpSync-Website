@@ -27,7 +27,7 @@ Keep `README.md` in this shared section order: title and public URL, Eleventy ov
 - The shared PumpSync wiki at https://github.com/eslutz/PumpSync/wiki is the single source of truth for project documentation.
 - Documentation changes, updates, and additions for this website project should be made in the wiki project when they describe project setup, architecture, ownership, operations, testing, support, privacy, or cross-repository behavior.
 - Keep this repository focused on website-owned source files, route content, layout, styling, deployment workflow, and website-specific validation details.
-- When website implementation changes require project documentation changes, update the relevant wiki page in `/Users/ericslutz/Developer/Code/PumpSync.wiki` in the same change set.
+- When website implementation changes require project documentation changes, update the relevant wiki page in the local `PumpSync.wiki` checkout in the workspace in the same change set.
 - Website docs in this repository should link to the wiki for project-level setup, architecture, operations, testing, support, privacy, and cross-repository ownership.
 
 ## Issues
