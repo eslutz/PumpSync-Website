@@ -24,11 +24,10 @@ Keep `README.md` in this shared section order: title and public URL, Eleventy ov
 
 ## Documentation
 
-- The shared PumpSync wiki at https://github.com/eslutz/PumpSync/wiki is the single source of truth for project documentation.
-- Documentation changes, updates, and additions for this website project should be made in the wiki project when they describe project setup, architecture, ownership, operations, testing, support, privacy, or cross-repository behavior.
+- The shared PumpSync wiki at https://github.com/eslutz/PumpSync/wiki is the source of truth for narrative, setup, architecture, ownership, operations, testing, and cross-repository documentation.
+- This website is the canonical, published source for anything a user reads — privacy policy, data deletion, support, accessibility, age suitability. The wiki and other repos link to these live pages; do not add a competing copy of that text to the wiki or elsewhere.
 - Keep this repository focused on website-owned source files, route content, layout, styling, deployment workflow, and website-specific validation details.
-- When website implementation changes require project documentation changes, update the relevant wiki page in the local `PumpSync.wiki` checkout in the workspace in the same change set.
-- Website docs in this repository should link to the wiki for project-level setup, architecture, operations, testing, support, privacy, and cross-repository ownership.
+- When a website change alters narrative/setup behavior described elsewhere (project setup, architecture, ownership, operations, testing), update the relevant wiki page in the local `PumpSync.wiki` checkout in the same change set. When it changes the public policy/support text itself, edit it here — that edit is the source of truth, nothing else needs to change in sync with it.
 
 ## Issues
 
