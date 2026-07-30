@@ -10,5 +10,12 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
+  },
+  "overrides": {
+    "@11ty/recursive-copy": "5.0.2",
+    "minimatch": "10.2.6",
+    "brace-expansion": "5.0.8",
+    "linkify-it": "5.0.2",
+    "liquidjs": "10.27.1"
   }
 }
