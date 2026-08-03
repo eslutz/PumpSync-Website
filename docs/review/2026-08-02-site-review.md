@@ -8,7 +8,19 @@
 > - **POL-02 resolved.** The app and backend repositories now carry an identical `LICENSE.md` (PolyForm Noncommercial 1.0.0, permitting noncommercial use including personal self-hosting), and the site footer links to it.
 > - **PRIV-12 resolved.** Verbatim policy copies were removed from the wiki in favor of links to the canonical pages. The wiki commit could not be pushed from this environment (GitHub wikis are separate repositories outside the session credential's reach) and was delivered to the owner as a patch.
 >
-> Still open for the owner: **PRIV-07** (international-transfer sentence — drafted as a template comment in `src/privacy/index.njk` pending confirmation of the hosted backend's Azure region), the **DEL-01/DEL-03** commitments (30-day processing, confirmation reply, best-effort no-ID fallback) which are operational promises to confirm, and the license choice itself. Items marked *Discussion* were left as owner decisions, except the caregiver sentence (AGE-03) and the editorial-policy test comments (TEST-07), which the batches included. The findings below are otherwise left as written on 2026-08-02 and describe the pre-fix state.
+> A further pass then closed every remaining open item on owner direction:
+>
+> - **PRIV-07 resolved.** Hosted processing is disclosed as Microsoft Azure East US and East US 2, with what that means for non-US users.
+> - **PRIV-11 resolved.** The CCPA applicability note is in the Sharing section.
+> - **DEL-01/DEL-03 confirmed.** The 30-day processing window, confirmation reply, and no-ID fallback stand as written.
+> - **POL-02 confirmed.** PolyForm Noncommercial 1.0.0 is the accepted license.
+> - **COPY-10 resolved.** iOS/iPhone is now named on the site; the platform-language test was narrowed to ban only version-pinned references, which are the part that actually goes stale.
+> - **COPY-12 resolved.** Demo mode is explained on the support page (purpose, audience, and the real-Health-store caveat) and pointed to from the home page, with setup steps left to the wiki walkthrough.
+> - **SEO-06 resolved.** `MobileApplication` JSON-LD ships on the home page; `AGENTS.md` now distinguishes inert structured data from executable script, and the privacy page's website section describes it precisely.
+> - **DES-19 resolved.** The footer is one landmark with non-heading group titles: home went from six nav landmarks and five trailing h2s to two landmarks and a clean h1→h2→h3 outline.
+> - **In-app gap closed.** The app's sync-trigger disclosure was nested inside the initial-import section and disappeared after the first sync; it now lives in an always-visible section naming manual syncing alongside both automatic triggers.
+>
+> One item remains outside this repository's reach: the wiki commit removing duplicated policy text (**PRIV-12**) was delivered to the owner as a patch, since GitHub wikis are separate repositories the session credential cannot push to. The findings below are otherwise left as written on 2026-08-02 and describe the pre-fix state.
 
 Commit reviewed: `8b5cbe7` on `claude/pump-sync-review-smap2g` (identical to `main` at review time).
 Built locally with Eleventy 3.x on Node 22; rendered testing against the local build via headless Chromium (Playwright 1.56.1), axe-core (npm latest), html-validate, and the W3C Nu validator (vnu.jar).
