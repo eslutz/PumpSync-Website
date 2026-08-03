@@ -11,7 +11,8 @@ Project documentation lives in the [PumpSync wiki](https://github.com/eslutz/Pum
 - `src/index.njk` - home page.
 - `src/_includes/layouts/base.njk` - shared layout, metadata, header, and footer.
 - `src/assets/styles.css` - site styling.
-- `src/assets/pumpsync-mark.svg` - website mark.
+- `src/assets/pumpsync-logo.png` - header logo.
+- `src/_data/claims.json` - shared canonical policy sentences rendered into pages.
 - `src/CNAME` - GitHub Pages custom domain.
 - `src/robots.txt` and `src/sitemap.xml` - search metadata.
 - `.github/workflows/pages.yml` - GitHub Pages deployment workflow.

@@ -155,7 +155,7 @@ test("support email links use request-specific subjects", async () => {
 test("canonical policy claims render from shared data on required pages", async () => {
   const claims = JSON.parse(await readFile("src/_data/claims.json", "utf8"));
   const requirements = {
-    "index.html": ["medicalDisclaimer"],
+    "index.html": ["medicalDisclaimer", "healthkitNoAds", "selfHostedDeletion"],
     "support/index.html": ["syncTriggers", "keychainStorage", "backendNonPersistence", "medicalDisclaimer", "doNotSend"],
     "privacy/index.html": ["syncTriggers", "backendNonPersistence", "healthkitNoAds", "medicalDisclaimer"],
     "terms/index.html": ["syncTriggers"],
