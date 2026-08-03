@@ -518,9 +518,10 @@ h3 {
   list-style: none;
 }
 
-.footer-group h2 {
+.footer-group-title {
   color: var(--ink);
   font-size: 0.86rem;
+  font-weight: 700;
   margin: 0 0 0.2rem;
   text-transform: uppercase;
 }

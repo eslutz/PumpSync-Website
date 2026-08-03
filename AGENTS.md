@@ -13,7 +13,7 @@ This repository is the Eleventy source for the public PumpSync website at <https
 - Keep shared page chrome, metadata, navigation, and footer behavior in `src/_includes/layouts/base.njk`.
 - Keep site styling in the existing stylesheet path for this repo.
 - Keep public routes slash-normalized in links and canonical URLs.
-- Do not add runtime JavaScript unless a concrete user-facing requirement needs it.
+- Do not add executable runtime JavaScript unless a concrete user-facing requirement needs it. Inert `application/ld+json` structured data is allowed: browsers parse it as metadata and never execute it.
 - Do not add visible App Store, TestFlight, or download links unless a real public URL exists.
 - Do not publish literal support email addresses in README or AGENTS docs; state that email is secondary.
 - Do not manually hard-wrap prose sentences in Markdown. Keep each sentence on one line and let the browser or editor wrap text.

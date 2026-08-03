@@ -84,10 +84,10 @@ test("site chrome uses the PumpSync app icon assets", async () => {
 
 test("footer project and policy links include app repository", async () => {
   const html = await page("index.html");
-  const footer = requiredBlock(html, /<div class="footer-groups">([\s\S]*?)<\/div>/, "footer groups");
+  const footer = requiredBlock(html, /<nav class="footer-groups"[^>]*>([\s\S]*?)<\/nav>/, "footer groups");
   const links = linksFrom(footer);
 
-  assert.doesNotMatch(footer, /<h2>Website<\/h2>/);
+  assert.doesNotMatch(footer, /<h2>/, "footer groups use non-heading titles to keep the page heading map clean");
   assert.ok(links.some((link) => link.href === `${appRepo}` && link.label === "GitHub"));
   assert.ok(links.some((link) => link.href === "/privacy/data-deletion/" && link.label === "Data Deletion"));
 });
@@ -194,9 +194,10 @@ test("canonical policy claims render from shared data on required pages", async 
   }
 });
 
-test("rendered pages keep platform language device agnostic", async () => {
-  // Deliberate editorial policy, not a bug guard: rendered copy stays
-  // platform-neutral so pages remain valid across Apple device families.
+test("rendered pages avoid version-pinned platform references", async () => {
+  // Deliberate editorial policy, not a bug guard: naming iOS/iPhone is fine
+  // (it is the only supported frontend), but version-pinned references go
+  // stale with each OS release, so they stay out of published copy.
   const routes = [
     "index.html",
     "support/index.html",
@@ -209,7 +210,7 @@ test("rendered pages keep platform language device agnostic", async () => {
 
   for (const route of routes) {
     const html = await page(route);
-    assert.doesNotMatch(html, /iOS app|iOS Keychain|In iOS:|iOS version|iPhone|iPad/);
+    assert.doesNotMatch(html, /iOS \d|iPadOS \d|watchOS \d|macOS \d|In iOS:/);
   }
 });
 

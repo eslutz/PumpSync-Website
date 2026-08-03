@@ -43,6 +43,12 @@ innerPage: true
             <p>{{ claims.syncTriggers }} Insulin and carbohydrate samples are each written only if you have granted that Apple Health permission.</p>
           </div>
           <div class="faq">
+            <h3>Can I try PumpSync without a Tandem account?</h3>
+            <p>Yes. A public demo backend serves deterministic synthetic insulin and carbohydrate data and never contacts Tandem, so you can see exactly how syncing behaves before subscribing or entering real credentials. It is useful both for App Review and testing and for anyone evaluating the app.</p>
+            <p>Point the app at the demo server instead of a real backend and use the published demo credentials; the <a href="https://github.com/eslutz/PumpSync/wiki/Demo-Mode" target="_blank" rel="noopener noreferrer">demo mode walkthrough</a> has the current server URL and step-by-step setup.</p>
+            <p>One caution: the demo writes its synthetic samples into the real Apple Health store on your device. Use a test device, or delete the samples in the Apple Health app when you are done.</p>
+          </div>
+          <div class="faq">
             <h3>Do I need PumpSync Hosted?</h3>
             <p>No. PumpSync supports a hosted subscription path and a self-hosted path where you point the app at a backend you operate.</p>
           </div>

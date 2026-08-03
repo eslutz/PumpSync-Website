@@ -31,6 +31,10 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     {%- endif %}
+    {#- Inert JSON-LD data, not executable script: browsers parse it as metadata and never run it. -#}
+    {%- if structuredData %}
+    <script type="application/ld+json">{{ structuredData | dump | safe }}</script>
+    {%- endif %}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -52,16 +56,16 @@
 {{ content | safe }}
 
     <footer class="site-footer">
-      <div class="footer-groups">
-        <nav class="footer-group" aria-label="Site pages">
-          <h2>Site</h2>
+      <nav class="footer-groups" aria-label="Footer">
+        <div class="footer-group">
+          <p class="footer-group-title">Site</p>
           <ul>
             <li><a href="/"{% if navCurrent == "home" %} aria-current="page"{% endif %}>Home</a></li>
             <li><a href="/support/"{% if navCurrent == "support" %} aria-current="page"{% endif %}>Support</a></li>
           </ul>
-        </nav>
-        <nav class="footer-group" aria-label="Site policies">
-          <h2>Policies</h2>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group-title">Policies</p>
           <ul>
             <li><a href="/privacy/"{% if navCurrent == "privacy" %} aria-current="page"{% endif %}>Privacy</a></li>
             <li><a href="/terms/"{% if navCurrent == "terms" %} aria-current="page"{% endif %}>Terms of Use</a></li>
@@ -69,30 +73,30 @@
             <li><a href="/accessibility/"{% if navCurrent == "accessibility" %} aria-current="page"{% endif %}>Accessibility</a></li>
             <li><a href="/age-suitability/"{% if navCurrent == "age-suitability" %} aria-current="page"{% endif %}>Age Suitability</a></li>
           </ul>
-        </nav>
-        <nav class="footer-group" aria-label="PumpSync project links">
-          <h2>Project</h2>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group-title">Project</p>
           <ul>
             <li><a href="https://github.com/eslutz/PumpSync" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             <li><a href="https://github.com/eslutz/PumpSync/wiki" target="_blank" rel="noopener noreferrer">Wiki</a></li>
             <li><a href="https://github.com/eslutz/PumpSync/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
             <li><a href="https://github.com/eslutz/PumpSync/issues" target="_blank" rel="noopener noreferrer">Issues</a></li>
           </ul>
-        </nav>
-        <nav class="footer-group" aria-label="Developer">
-          <h2>Developer</h2>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group-title">Developer</p>
           <ul>
             <li><a href="https://ericslutz.dev" target="_blank" rel="noopener noreferrer">ericslutz.dev</a></li>
           </ul>
-        </nav>
-        <nav class="footer-group" aria-label="Related services">
-          <h2>Related Services</h2>
+        </div>
+        <div class="footer-group">
+          <p class="footer-group-title">Related Services</p>
           <ul>
             <li><a href="https://www.tandemdiabetes.com/" target="_blank" rel="noopener noreferrer">Tandem Diabetes Care</a></li>
             <li><a href="https://www.apple.com/ios/health/" target="_blank" rel="noopener noreferrer">Apple Health</a></li>
           </ul>
-        </nav>
-      </div>
+        </div>
+      </nav>
       <div class="footer-legal">
         <p>PumpSync is not affiliated with, endorsed by, or sponsored by Tandem Diabetes Care.</p>
         <p>{{ claims.medicalDisclaimer }}</p>
