@@ -27,6 +27,7 @@ test("required public routes render", async () => {
     "index.html",
     "support/index.html",
     "privacy/index.html",
+    "terms/index.html",
     "privacy/data-deletion/index.html",
     "accessibility/index.html",
     "age-suitability/index.html",
@@ -91,6 +92,7 @@ test("content pages render without side menus", async () => {
   const routes = [
     "support/index.html",
     "privacy/index.html",
+    "terms/index.html",
     "privacy/data-deletion/index.html",
     "accessibility/index.html",
     "age-suitability/index.html",
@@ -108,6 +110,7 @@ test("required canonical URLs use the public domain and trailing slash", async (
     "index.html": `${siteUrl}/`,
     "support/index.html": `${siteUrl}/support/`,
     "privacy/index.html": `${siteUrl}/privacy/`,
+    "terms/index.html": `${siteUrl}/terms/`,
     "privacy/data-deletion/index.html": `${siteUrl}/privacy/data-deletion/`,
     "accessibility/index.html": `${siteUrl}/accessibility/`,
     "age-suitability/index.html": `${siteUrl}/age-suitability/`,
@@ -128,6 +131,8 @@ test("privacy and support pages link to public data deletion instructions", asyn
 });
 
 test("privacy contact path uses support page without direct email", async () => {
+  // Deliberate editorial policy, not a bug guard: the privacy page routes
+  // contact through /support/ instead of publishing a direct email address.
   const privacy = await page("privacy/index.html");
 
   assert.match(privacy, /For privacy, deletion, or support requests, use the <a href="\/support\/">support page<\/a>\./);
@@ -147,11 +152,34 @@ test("support email links use request-specific subjects", async () => {
   assert.doesNotMatch(`${support}\n${deletion}`, /PUMPSYNC%20SUPPORT|PUMPSYNC SUPPORT/);
 });
 
+test("canonical policy claims render from shared data on required pages", async () => {
+  const claims = JSON.parse(await readFile("src/_data/claims.json", "utf8"));
+  const requirements = {
+    "index.html": ["medicalDisclaimer"],
+    "support/index.html": ["syncTriggers", "keychainStorage", "backendNonPersistence", "medicalDisclaimer", "doNotSend"],
+    "privacy/index.html": ["syncTriggers", "backendNonPersistence", "healthkitNoAds", "medicalDisclaimer"],
+    "terms/index.html": ["syncTriggers"],
+    "privacy/data-deletion/index.html": ["doNotSend", "selfHostedDeletion"],
+    "accessibility/index.html": ["doNotSend"],
+    "age-suitability/index.html": ["syncTriggers", "medicalDisclaimer"],
+  };
+
+  for (const [route, keys] of Object.entries(requirements)) {
+    const html = await page(route);
+    for (const key of keys) {
+      assert.ok(html.includes(claims[key]), `${route} should include claims.${key}`);
+    }
+  }
+});
+
 test("rendered pages keep platform language device agnostic", async () => {
+  // Deliberate editorial policy, not a bug guard: rendered copy stays
+  // platform-neutral so pages remain valid across Apple device families.
   const routes = [
     "index.html",
     "support/index.html",
     "privacy/index.html",
+    "terms/index.html",
     "privacy/data-deletion/index.html",
     "accessibility/index.html",
     "age-suitability/index.html",
@@ -168,6 +196,7 @@ test("rendered pages do not expose stale repo-internal legal paths", async () =>
     "index.html",
     "support/index.html",
     "privacy/index.html",
+    "terms/index.html",
     "privacy/data-deletion/index.html",
     "accessibility/index.html",
     "age-suitability/index.html",

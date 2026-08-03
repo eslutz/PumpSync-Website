@@ -52,4 +52,4 @@ Pushing to `main` triggers `.github/workflows/pages.yml`, builds the site, and d
 - Stylesheet: `src/assets/styles.css`
 - Deployment workflow: `.github/workflows/pages.yml`
 - Validation command: `npm test`
-- Required routes: `/`, `/support/`, `/privacy/`, `/privacy/data-deletion/`, `/accessibility/`, `/age-suitability/`
+- Required routes: `/`, `/support/`, `/privacy/`, `/terms/`, `/privacy/data-deletion/`, `/accessibility/`, `/age-suitability/`

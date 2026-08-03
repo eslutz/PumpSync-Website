@@ -19,9 +19,10 @@ innerPage: true
     <div class="wrap content">
         <article class="content-block">
           <h2>Contact</h2>
-          <p>GitHub Issues are the primary support route for reproducible bugs because they make investigation easier to track. For questions, feature ideas, or setup discussion, use GitHub Discussions.</p>
+          <p>GitHub Issues are the primary support route for reproducible bugs because they keep the investigation easy to track. For questions, feature ideas, or setup discussion, use GitHub Discussions.</p>
           <p class="button-row"><a class="button primary" href="https://github.com/eslutz/PumpSync/issues/new/choose" target="_blank" rel="noopener noreferrer">Open a GitHub Issue</a> <a class="button" href="https://github.com/eslutz/PumpSync/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a></p>
           <p>Email is available at <a href="mailto:support@ericslutz.dev?subject=PumpSync%20Support">support@ericslutz.dev</a>. Keep the subject <strong>PumpSync Support</strong> so support mail is routed correctly.</p>
+          <p>For privacy or data deletion requests, use email rather than a public GitHub Issue, and follow the <a href="/privacy/data-deletion/">data deletion instructions</a> for deletion requests.</p>
         </article>
 
         <article class="content-block">
@@ -30,7 +31,7 @@ innerPage: true
             <li>Include the app version, operating system version, device model, and whether you are using PumpSync Hosted or a self-hosted backend.</li>
             <li>Describe the step that failed: subscription restore, backend session, Tandem credential validation, Tandem sync, or Apple Health write.</li>
             <li>Include the backend URL only for self-hosted installations where sharing it is safe.</li>
-            <li>Do not include Tandem passwords, service tokens, App Store receipts, screenshots with health data, or other sensitive medical details.</li>
+            <li>{{ claims.doNotSend }}</li>
           </ul>
         </article>
 
@@ -38,7 +39,7 @@ innerPage: true
           <h2>FAQ</h2>
           <div class="faq">
             <h3>What does PumpSync do?</h3>
-            <p>PumpSync syncs Tandem Source pump data to Apple Health at the user's request, including insulin and carbohydrate samples when supported by the current sync flow.</p>
+            <p>{{ claims.syncTriggers }} Insulin and carbohydrate samples are each written only if you have granted that Apple Health permission.</p>
           </div>
           <div class="faq">
             <h3>Do I need PumpSync Hosted?</h3>
@@ -46,11 +47,11 @@ innerPage: true
           </div>
           <div class="faq">
             <h3>Where are Tandem credentials stored?</h3>
-            <p>The app stores Tandem credentials in Keychain with device-only accessibility. Credentials are sent to the backend only during an active HTTPS sync request.</p>
+            <p>{{ claims.keychainStorage }}</p>
           </div>
           <div class="faq">
             <h3>Does PumpSync keep my Tandem health data on the backend?</h3>
-            <p>No. The backend does not persist Tandem credentials, Tandem tokens, raw Tandem events, or normalized Tandem samples.</p>
+            <p>No. {{ claims.backendNonPersistence }}</p>
           </div>
           <div class="faq">
             <h3>How do I remove data?</h3>
@@ -58,7 +59,7 @@ innerPage: true
           </div>
           <div class="faq">
             <h3>Is PumpSync medical advice?</h3>
-            <p>No. PumpSync is not a medical device and does not provide medical advice, diagnosis, treatment, or dosing recommendations.</p>
+            <p>No. {{ claims.medicalDisclaimer }}</p>
           </div>
         </article>
     </div>

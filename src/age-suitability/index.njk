@@ -19,13 +19,13 @@ innerPage: true
     <div class="wrap content">
         <article class="content-block">
           <h2>What PumpSync does</h2>
-          <p>PumpSync syncs Tandem Source pump data to Apple Health at the user's request. It is intended for personal data portability and recordkeeping by users who are authorized to access the connected Tandem Source account and Apple Health data.</p>
+          <p>{{ claims.syncTriggers }} It is intended for personal data portability and recordkeeping by users who are authorized to access the connected Tandem Source account and Apple Health data.</p>
         </article>
 
         <article class="content-block">
           <h2>What PumpSync does not do</h2>
           <ul>
-            <li>PumpSync does not provide medical advice, diagnosis, treatment, or dosing recommendations.</li>
+            <li>{{ claims.medicalDisclaimer }}</li>
             <li>PumpSync does not include chat, messaging, social feeds, advertising, gambling, contests, loot boxes, or monetized chance mechanics.</li>
             <li>PumpSync does not provide unrestricted web access.</li>
             <li>PumpSync does not sell or share HealthKit data with advertisers, data brokers, or marketing services.</li>
@@ -35,12 +35,20 @@ innerPage: true
         <article class="content-block">
           <h2>Guidance for parents and guardians</h2>
           <p>Parents and guardians should supervise use by minors and confirm that the user is authorized to access the Tandem Source account, Apple Health data, PumpSync Hosted subscription, or self-hosted backend being used.</p>
+          <p>Caregivers may run PumpSync on the caregiver's own device and subscription on behalf of a child, provided they are authorized on the connected Tandem Source account.</p>
+          <p>PumpSync is not directed at children under 13; see the <a href="/privacy/">privacy policy</a> for the children's privacy statement.</p>
           <p>Users should verify health data and follow guidance from qualified healthcare professionals before making health or treatment decisions.</p>
         </article>
 
         <article class="content-block">
           <h2>App Review context</h2>
           <p>Because PumpSync handles health-related records and writes to Apple Health only with permission, its age rating and review context may reflect health-data handling, third-party account access, and medical-disclaimer requirements rather than entertainment content.</p>
+          <p>Based on Apple's age rating questionnaire (medical or treatment information), PumpSync's expected age rating is 12+. The final rating is assigned by Apple at release.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Questions</h2>
+          <p>For questions about age suitability, supervision, or authorized use, use the <a href="/support/">support page</a>.</p>
         </article>
     </div>
   </section>

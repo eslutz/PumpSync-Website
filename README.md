@@ -22,6 +22,7 @@ Project documentation lives in the [PumpSync wiki](https://github.com/eslutz/Pum
 - `/` - product overview.
 - `/support/` - App Store support URL.
 - `/privacy/` - App Store privacy policy URL.
+- `/terms/` - terms of use for the app and hosted service.
 - `/privacy/data-deletion/` - account and data deletion instructions.
 - `/accessibility/` - accessibility disclosure URL.
 - `/age-suitability/` - App Review age-suitability context.

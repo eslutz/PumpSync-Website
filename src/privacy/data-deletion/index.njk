@@ -19,7 +19,8 @@ innerPage: true
     <div class="wrap content">
         <article class="content-block">
           <h2>Effective date</h2>
-          <p>June 18, 2026</p>
+          <p>Effective date: June 18, 2026</p>
+          <p>Last updated: August 3, 2026</p>
         </article>
 
         <article class="content-block">
@@ -38,11 +39,12 @@ innerPage: true
           <p>On your device:</p>
           <ol>
             <li>Open Settings.</li>
+            <li>Open Privacy &amp; Security.</li>
             <li>Open Health.</li>
-            <li>Open Data Access &amp; Devices.</li>
             <li>Select PumpSync.</li>
-            <li>Disable PumpSync access or remove PumpSync data as desired.</li>
+            <li>Update or turn off the Insulin Delivery and Carbohydrates permissions.</li>
           </ol>
+          <p>To review or delete samples PumpSync has already written, use the Apple Health app.</p>
           <p>Samples already written to Apple Health are controlled by Apple Health. Deleting PumpSync does not automatically delete samples already written to Apple Health.</p>
         </article>
 
@@ -56,21 +58,31 @@ innerPage: true
             <li>Tap Delete Data Request.</li>
             <li>Send the prefilled email.</li>
           </ol>
-          <p>The app includes the PumpSync installation ID needed to locate hosted metadata associated with that app install.</p>
+          <p>The app includes the PumpSync installation ID needed to locate hosted metadata associated with that app install. Possession of the installation ID is also how deletion requests are verified; no other personal information is needed.</p>
+          <p>If you plan to delete the app, copy your installation ID first. It is stored only on that device and cannot be recovered after the app is deleted.</p>
           <p>If you cannot send the request from the app, email <a href="mailto:support@ericslutz.dev?subject=DELETION%20REQUEST%20-%20PumpSync%20Support">support@ericslutz.dev</a> with the subject <strong>DELETION REQUEST - PumpSync Support</strong>.</p>
           <p>Include your PumpSync installation ID. To find it in the app, open Settings, then Developer, then copy the Installation ID.</p>
-          <p>Do not include Tandem passwords, Tandem tokens, screenshots containing health data, or other sensitive medical details in the request.</p>
+          <p>If you already deleted the app and no longer have the installation ID, email the same address anyway. Hosted metadata can be located from App Store subscription records where possible, and requests without an ID are handled on a best-effort basis.</p>
+          <p>{{ claims.doNotSend }}</p>
           <p>Deletion covers PumpSync hosted server-side metadata associated with the subscription or installation, subject to records PumpSync must retain for security, fraud prevention, legal compliance, billing, dispute handling, or service integrity.</p>
+          <p>Hosted server-side metadata means the records listed in the <a href="/privacy/">privacy policy's</a> Backend storage section: subscription entitlement state, installation mappings, rate-limit events, sync attempt metadata, idempotency records, and redacted operational audit events.</p>
+          <p>Deletion requests are processed within 30 days, and you will receive a reply confirming when deletion is complete.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Subscription billing is separate</h2>
+          <p>Requesting data deletion or deleting the app does not cancel a PumpSync Hosted subscription.</p>
+          <p>Manage or cancel the subscription in your device's subscription settings or through <a href="https://support.apple.com/HT202039" target="_blank" rel="noopener noreferrer">Apple's manage-subscriptions guide</a>.</p>
         </article>
 
         <article class="content-block">
           <h2>Self-hosted users</h2>
-          <p>Self-hosted users control their own backend data and should delete data directly from their self-hosted storage account or database.</p>
+          <p>{{ claims.selfHostedDeletion }}</p>
         </article>
 
         <article class="content-block">
-          <h2>Nonprod and TestFlight data</h2>
-          <p>For nonprod and TestFlight builds, PumpSync may reset backend data during testing. Testers can request deletion using the same support path above.</p>
+          <h2>Beta and TestFlight data</h2>
+          <p>For beta and TestFlight builds, PumpSync may reset backend data during testing. Testers can request deletion using the same support path above.</p>
         </article>
     </div>
   </section>
