@@ -260,9 +260,13 @@ h3 {
   box-shadow: 0 12px 28px rgb(1 71 168 / 18%);
 }
 
+/* Darken rather than brighten on hover: white label text cannot brighten past
+   white, so lightening the gradient would drop the lightest stop below the
+   4.5:1 minimum (SC 1.4.3). Darkening keeps a motion-free hover cue and
+   raises contrast instead. */
 .button.primary:hover,
 .button.dark:hover {
-  filter: brightness(1.08);
+  filter: brightness(0.92);
 }
 
 .button.secondary {
