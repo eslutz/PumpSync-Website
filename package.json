@@ -2,14 +2,19 @@
   "name": "pumpsync-website",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('_site', { recursive: true, force: true })\"",
     "build": "npm run clean && eleventy",
     "start": "eleventy --serve --port 8766",
-    "test": "npm run build && node --test"
+    "lint:html": "html-validate \"_site/**/*.html\"",
+    "test": "npm run build && node --test && npm run lint:html"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "html-validate": "^10.17.0"
   },
   "overrides": {
     "@11ty/recursive-copy": "5.0.2",

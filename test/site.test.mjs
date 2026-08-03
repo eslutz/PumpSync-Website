@@ -48,8 +48,11 @@ test("custom 404 page is emitted at the site root for GitHub Pages", async () =>
 });
 
 test("home page navigation matches the PumpSync support pattern", async () => {
+  // Deliberate fixed contract: the header nav's links and their order are a
+  // shared pattern across the PumpSync sites; change this test only when the
+  // nav itself is intentionally changed.
   const html = await page("index.html");
-  const nav = requiredBlock(html, /<div class="nav-links">([\s\S]*?)<\/div>/, "main navigation links");
+  const nav = requiredBlock(html, /<ul class="nav-links">([\s\S]*?)<\/ul>/, "main navigation links");
 
   assert.deepEqual(linksFrom(nav), [
     { href: "/support/", label: "Support" },
@@ -73,6 +76,7 @@ test("site chrome uses the PumpSync app icon assets", async () => {
   assert.deepEqual(manifest.icons, [
     { src: "/assets/icon-192.png", sizes: "192x192", type: "image/png" },
     { src: "/assets/icon-512.png", sizes: "512x512", type: "image/png" },
+    { src: "/assets/icon-512-maskable.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
   ]);
   assert.ok(favicon.length > 0);
   await assert.rejects(readFile("_site/assets/pumpsync-mark.svg"));
@@ -119,7 +123,25 @@ test("required canonical URLs use the public domain and trailing slash", async (
   for (const [route, canonical] of Object.entries(expected)) {
     const html = await page(route);
     assert.match(html, new RegExp(`<link rel="canonical" href="${canonical}">`));
+    assert.match(html, /<meta name="description" content=".+">/, `${route} should have a meta description`);
+    assert.match(html, /<meta property="og:title" content=".+">/, `${route} should have og metadata`);
   }
+});
+
+test("sitemap lists exactly the public routes", async () => {
+  const sitemap = await page("sitemap.xml");
+  const locs = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g), ([, loc]) => loc).sort();
+  const expected = [
+    `${siteUrl}/`,
+    `${siteUrl}/support/`,
+    `${siteUrl}/privacy/`,
+    `${siteUrl}/terms/`,
+    `${siteUrl}/privacy/data-deletion/`,
+    `${siteUrl}/accessibility/`,
+    `${siteUrl}/age-suitability/`,
+  ].sort();
+
+  assert.deepEqual(locs, expected);
 });
 
 test("privacy and support pages link to public data deletion instructions", async () => {

@@ -16,7 +16,8 @@ innerPage: true
   </section>
 
   <section class="section">
-    <div class="wrap content">
+    <div class="wrap">
+      <div class="content">
         <article class="content-block">
           <h2>Effective date</h2>
           <p>Effective date: June 18, 2026</p>
@@ -68,7 +69,7 @@ innerPage: true
           <h2>Sharing</h2>
           <p>PumpSync does not sell user data. PumpSync does not share HealthKit data, Tandem credentials, Tandem tokens, raw Tandem events, or normalized Tandem samples with advertisers, data brokers, or marketing services.</p>
           <p>PumpSync uses these infrastructure providers: Apple (App Store distribution, subscriptions, and Apple Health), Microsoft Azure (hosted backend infrastructure and telemetry), and GitHub (website hosting, source code, and support workflows). Those providers process data only as needed to provide their services.</p>
-          {# TODO(owner) PRIV-07: add an international-transfer sentence naming the hosted backend's Azure region once confirmed, e.g. "PumpSync Hosted runs in Microsoft Azure data centers in <region>; using PumpSync Hosted from other countries transfers sync request data there." The region is not stated in the public docs, so it was not asserted here. #}
+          {#- TODO(owner) PRIV-07: add an international-transfer sentence naming the hosted backend's Azure region once confirmed, e.g. "PumpSync Hosted runs in Microsoft Azure data centers in <region>; using PumpSync Hosted from other countries transfers sync request data there." The region is not stated in the public docs, so it was not asserted here. #}
         </article>
 
         <article class="content-block">
@@ -117,6 +118,7 @@ innerPage: true
           <h2>Contact</h2>
           <p>For privacy, deletion, or support requests, use the <a href="/support/">support page</a>.</p>
         </article>
+      </div>
     </div>
   </section>
 </main>
