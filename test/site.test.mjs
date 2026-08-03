@@ -38,6 +38,14 @@ test("required public routes render", async () => {
   }
 });
 
+test("custom 404 page is emitted at the site root for GitHub Pages", async () => {
+  const html = await page("404.html");
+
+  assert.match(html, /Page not found/);
+  assert.doesNotMatch(html, /rel="canonical"/, "error pages should not declare a canonical URL");
+  assert.doesNotMatch(html, /property="og:/, "error pages should not declare social metadata");
+});
+
 test("home page navigation matches the PumpSync support pattern", async () => {
   const html = await page("index.html");
   const nav = requiredBlock(html, /<div class="nav-links">([\s\S]*?)<\/div>/, "main navigation links");
@@ -60,7 +68,7 @@ test("site chrome uses the PumpSync app icon assets", async () => {
   assert.match(html, /<link rel="icon" type="image\/png" sizes="32x32" href="\/assets\/favicon-32\.png">/);
   assert.match(html, /<link rel="icon" type="image\/png" sizes="48x48" href="\/assets\/favicon-48\.png">/);
   assert.match(html, /<link rel="apple-touch-icon" sizes="180x180" href="\/assets\/apple-touch-icon\.png">/);
-  assert.match(html, /<img src="\/assets\/pumpsync-app-icon\.png" alt="" width="36" height="36">/);
+  assert.match(html, /<img src="\/assets\/pumpsync-logo\.png"[^>]*alt=""[^>]*width="36"[^>]*height="36"/);
   assert.deepEqual(manifest.icons, [
     { src: "/assets/icon-192.png", sizes: "192x192", type: "image/png" },
     { src: "/assets/icon-512.png", sizes: "512x512", type: "image/png" },

@@ -17,32 +17,34 @@ navCurrent: "home"
           <a class="button secondary" href="/privacy/">Read privacy details</a>
         </div>
       </div>
-      <div class="sync-card" aria-label="PumpSync data flow">
+      <div class="sync-card" role="group" aria-label="PumpSync data flow">
         <div class="sync-card-header">
           <strong>Sync model</strong>
           <span class="status-dot" aria-hidden="true"></span>
         </div>
-        <div class="sync-line">
-          <div class="sync-icon" aria-hidden="true">1</div>
-          <div>
-            <h3>Tandem Source</h3>
-            <p>Credentials stay in Keychain and are sent only during an active HTTPS sync request.</p>
-          </div>
-        </div>
-        <div class="sync-line">
-          <div class="sync-icon" aria-hidden="true">2</div>
-          <div>
-            <h3>PumpSync backend</h3>
-            <p>The backend performs request-time sync work and does not persist Tandem credentials, tokens, raw events, or normalized samples.</p>
-          </div>
-        </div>
-        <div class="sync-line">
-          <div class="sync-icon" aria-hidden="true">3</div>
-          <div>
-            <h3>Apple Health</h3>
-            <p>Insulin and carbohydrate samples are written only after the user grants Apple Health permission.</p>
-          </div>
-        </div>
+        <ol class="sync-list">
+          <li class="sync-line">
+            <div class="sync-icon" aria-hidden="true">1</div>
+            <div>
+              <p class="sync-step-title">Tandem Source</p>
+              <p>Credentials stay in Keychain and are sent only during an active HTTPS sync request.</p>
+            </div>
+          </li>
+          <li class="sync-line">
+            <div class="sync-icon" aria-hidden="true">2</div>
+            <div>
+              <p class="sync-step-title">PumpSync backend</p>
+              <p>The backend performs request-time sync work and does not persist Tandem credentials, tokens, raw events, or normalized samples.</p>
+            </div>
+          </li>
+          <li class="sync-line">
+            <div class="sync-icon" aria-hidden="true">3</div>
+            <div>
+              <p class="sync-step-title">Apple Health</p>
+              <p>Insulin and carbohydrate samples are written only after the user grants Apple Health permission.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
