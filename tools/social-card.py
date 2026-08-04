@@ -15,9 +15,16 @@ artwork changes; replacing a file in place leaves already-scraped links showing
 the old card indefinitely.
 
 Usage: python3 tools/social-card.py
-Requires Pillow and the DejaVu fonts.
+Requires Pillow and DejaVu Sans Bold.
+
+The card is rendered with DejaVu Sans Bold specifically, and no other font is
+substituted: the layout budget below is measured in that font's metrics, so a
+fallback would silently shift the text. Install it if the script cannot find it
+(macOS: `brew install --cask font-dejavu`; Debian/Ubuntu: `fonts-dejavu-core`;
+Fedora: `dejavu-sans-fonts`), or point PUMPSYNC_CARD_FONT at a copy.
 """
 
+import os
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -26,7 +33,19 @@ ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "src" / "assets"
 OUTPUT = ASSETS / "social-card-2.png"
 ICON = ASSETS / "icon-512.png"
-FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
+# Ordered candidates: explicit override, then the bare name so Pillow can search
+# the platform font directories, then the known packaged locations.
+FONT_CANDIDATES = (
+    os.environ.get("PUMPSYNC_CARD_FONT"),
+    "DejaVuSans-Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",  # Debian, Ubuntu
+    "/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf",  # Fedora, RHEL
+    "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf",  # Arch
+    "/opt/homebrew/share/fonts/DejaVuSans-Bold.ttf",  # macOS, Apple silicon
+    "/usr/local/share/fonts/DejaVuSans-Bold.ttf",  # macOS, Intel
+    str(Path.home() / "Library/Fonts/DejaVuSans-Bold.ttf"),  # macOS, user install
+)
 
 WIDTH, HEIGHT = 1200, 630
 TITLE = "PumpSync"
@@ -39,6 +58,24 @@ MIDPOINT = 0.45
 # Keep the subtitle's right ink edge at or under this so it balances the
 # icon's 120px left margin.
 RIGHT_INK_BUDGET = 1080
+
+
+def load_font(size: int) -> ImageFont.FreeTypeFont:
+    for candidate in FONT_CANDIDATES:
+        if not candidate:
+            continue
+        try:
+            return ImageFont.truetype(candidate, size)
+        except OSError:
+            continue
+    raise SystemExit(
+        "DejaVu Sans Bold not found. The card is measured in this font's metrics, "
+        "so no substitute is used.\n"
+        "  macOS:         brew install --cask font-dejavu\n"
+        "  Debian/Ubuntu: apt install fonts-dejavu-core\n"
+        "  Fedora/RHEL:   dnf install dejavu-sans-fonts\n"
+        "Or set PUMPSYNC_CARD_FONT to the path of a DejaVuSans-Bold.ttf copy."
+    )
 
 
 def gradient() -> Image.Image:
@@ -69,9 +106,9 @@ def main() -> None:
     image.paste(icon, (120, 165), mask)
 
     draw = ImageDraw.Draw(image)
-    draw.text((480, 225), TITLE, font=ImageFont.truetype(FONT, 96), fill=(255, 255, 255))
+    draw.text((480, 225), TITLE, font=load_font(96), fill=(255, 255, 255))
 
-    subtitle_font = ImageFont.truetype(FONT, 29)
+    subtitle_font = load_font(29)
     draw.text((484, 352), SUBTITLE, font=subtitle_font, fill=(226, 244, 255))
 
     right_edge = 484 + draw.textlength(SUBTITLE, font=subtitle_font)
