@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the Open Graph social card at src/assets/social-card-2.png.
+"""Generate the Open Graph social card at src/assets/social-card-3.png.
 
 The card renders its text into pixels, so grep cannot find it. That once left
 "Tandem Source to Apple Health sync" baked into the shared image after the copy
@@ -31,7 +31,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "src" / "assets"
 FONTS = ASSETS / "fonts"
-OUTPUT = ASSETS / "social-card-2.png"
+OUTPUT = ASSETS / "social-card-3.png"
 ICON = ASSETS / "icon-512.png"
 
 DISPLAY_FONT = FONTS / "HubotSans.woff2"  # the site's h1 face

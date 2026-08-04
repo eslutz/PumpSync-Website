@@ -131,6 +131,28 @@ test("brand typefaces are self-hosted, licensed, and preloaded on every route", 
   assert.match(license, /Reserved Font Name "Hubot Sans"/);
 });
 
+test("the social card filename matches its generator and is published", async () => {
+  // The card's text is baked into pixels, and social platforms cache og:image by
+  // URL. So the generator's OUTPUT and the rendered og:image must never drift:
+  // a mismatch either 404s the card or leaves already-scraped links showing
+  // stale artwork with no way to refresh them.
+  const generator = await readFile("tools/social-card.py", "utf8");
+  const output = generator.match(/^OUTPUT = ASSETS \/ "([^"]+)"$/m);
+  assert.ok(output, "tools/social-card.py should declare its OUTPUT filename");
+
+  const html = await page("index.html");
+  const ogImage = html.match(/<meta property="og:image" content="([^"]+)">/);
+  assert.ok(ogImage, "og:image should render");
+  assert.equal(
+    ogImage[1],
+    `${siteUrl}/assets/${output[1]}`,
+    "og:image should point at the file the generator writes",
+  );
+
+  const card = await readFile(`_site/assets/${output[1]}`);
+  assert.ok(card.length > 0, `${output[1]} should be published`);
+});
+
 test("footer project and policy links include app repository", async () => {
   const html = await page("index.html");
   const footer = requiredBlock(html, /<nav class="footer-groups"[^>]*>([\s\S]*?)<\/nav>/, "footer groups");
