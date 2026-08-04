@@ -82,6 +82,77 @@ test("site chrome uses the PumpSync app icon assets", async () => {
   await assert.rejects(readFile("_site/assets/pumpsync-mark.svg"));
 });
 
+test("brand typefaces are self-hosted, licensed, and preloaded on every route", async () => {
+  // The house typography convention (AGENTS.md) was lost once already: the
+  // stylesheet named a font it never loaded, and a cleanup pass then removed
+  // the name, leaving no trace that a brand face was ever intended. This test
+  // is the guard against that happening again.
+  const routes = [
+    "index.html",
+    "support/index.html",
+    "privacy/index.html",
+    "terms/index.html",
+    "privacy/data-deletion/index.html",
+    "accessibility/index.html",
+    "age-suitability/index.html",
+  ];
+
+  for (const route of routes) {
+    const html = await page(route);
+    for (const font of ["MonaSans", "HubotSans"]) {
+      assert.match(
+        html,
+        new RegExp(`<link rel="preload" href="/assets/fonts/${font}\\.woff2" as="font" type="font/woff2" crossorigin>`),
+        `${route} should preload ${font}.woff2`,
+      );
+    }
+  }
+
+  const css = await page("assets/styles.css");
+  assert.match(css, /@font-face\s*\{[^}]*font-family: "Mona Sans"/, "Mona Sans should be declared");
+  assert.match(css, /@font-face\s*\{[^}]*font-family: "Hubot Sans"/, "Hubot Sans should be declared");
+  assert.match(css, /font-display: swap/, "webfonts should not block first paint");
+  assert.match(
+    css,
+    /font-family: "Mona Sans", ui-sans-serif, system-ui/,
+    "body copy should name Mona Sans ahead of the system fallback stack",
+  );
+  // Deliberate privacy constraint, not a style preference: /privacy/ states the
+  // site makes no third-party requests, so every url() must be same-origin.
+  assert.doesNotMatch(css, /url\(\s*["']?https?:/, "fonts must be self-hosted, never loaded from a CDN");
+
+  for (const asset of ["MonaSans.woff2", "HubotSans.woff2"]) {
+    const bytes = await readFile(`_site/assets/fonts/${asset}`);
+    assert.ok(bytes.length > 0, `${asset} should be published`);
+  }
+  // SIL OFL 1.1 requires the notice to travel with any redistribution.
+  const license = await readFile("_site/assets/fonts/OFL.txt", "utf8");
+  assert.match(license, /Reserved Font Name "Mona Sans"/);
+  assert.match(license, /Reserved Font Name "Hubot Sans"/);
+});
+
+test("the social card filename matches its generator and is published", async () => {
+  // The card's text is baked into pixels, and social platforms cache og:image by
+  // URL. So the generator's OUTPUT and the rendered og:image must never drift:
+  // a mismatch either 404s the card or leaves already-scraped links showing
+  // stale artwork with no way to refresh them.
+  const generator = await readFile("tools/social-card.py", "utf8");
+  const output = generator.match(/^OUTPUT = ASSETS \/ "([^"]+)"$/m);
+  assert.ok(output, "tools/social-card.py should declare its OUTPUT filename");
+
+  const html = await page("index.html");
+  const ogImage = html.match(/<meta property="og:image" content="([^"]+)">/);
+  assert.ok(ogImage, "og:image should render");
+  assert.equal(
+    ogImage[1],
+    `${siteUrl}/assets/${output[1]}`,
+    "og:image should point at the file the generator writes",
+  );
+
+  const card = await readFile(`_site/assets/${output[1]}`);
+  assert.ok(card.length > 0, `${output[1]} should be published`);
+});
+
 test("footer project and policy links include app repository", async () => {
   const html = await page("index.html");
   const footer = requiredBlock(html, /<nav class="footer-groups"[^>]*>([\s\S]*?)<\/nav>/, "footer groups");
