@@ -1,9 +1,10 @@
 {
   "medicalDisclaimer": "PumpSync is not a medical device and does not provide medical advice, diagnosis, treatment, or dosing recommendations.",
   "healthkitNoAds": "PumpSync does not use HealthKit data for advertising, marketing, tracking, or data mining.",
-  "syncTriggers": "PumpSync syncs Tandem Source pump data to Apple Health when you request a sync and, after initial setup, automatically when the app opens and during daily background updates.",
+  "syncTriggers": "PumpSync syncs your pump data to Apple Health when you request a sync and, after initial setup, automatically when the app opens and during daily background updates.",
   "backendNonPersistence": "The backend does not persist Tandem username, password, Tandem session cookies, Tandem access tokens, raw Tandem events, or normalized Tandem samples.",
-  "keychainStorage": "The app stores Tandem credentials in Keychain with device-only accessibility. Credentials are sent to the backend only during an active HTTPS sync request.",
-  "doNotSend": "Do not include Tandem passwords, Tandem tokens, service tokens, App Store receipts, screenshots containing health data, or other sensitive medical details.",
-  "selfHostedDeletion": "Self-hosted users control their own backend data and should delete data directly from their self-hosted storage account or database."
+  "keychainStorage": "The app stores your pump account credentials in Keychain with device-only accessibility. Credentials are sent to the backend only during an active HTTPS sync request.",
+  "doNotSend": "Do not include pump account passwords or tokens, service tokens, App Store receipts, screenshots containing health data, or other sensitive medical details.",
+  "selfHostedDeletion": "Self-hosted users control their own backend data and should delete data directly from their self-hosted storage account or database.",
+  "supportedSources": "PumpSync currently supports Tandem Source, with support for more pump services planned."
 }
