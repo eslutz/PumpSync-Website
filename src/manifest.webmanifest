@@ -1,8 +1,11 @@
 {
   "name": "PumpSync",
   "short_name": "PumpSync",
+  "description": "Public website for PumpSync, a privacy-first Tandem Source to Apple Health sync app.",
+  "id": "/",
+  "scope": "/",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#f5fbff",
   "theme_color": "#006fbd",
   "icons": [
@@ -15,6 +18,12 @@
       "src": "/assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

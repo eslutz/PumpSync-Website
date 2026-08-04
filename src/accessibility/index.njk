@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: "Accessibility | PumpSync"
-description: "Accessibility support and reporting path for PumpSync."
+description: "PumpSync's accessibility goals and WCAG 2.2 AA target, supported assistive technologies, known limitations, and how to report issues."
 canonical: "https://pumpsync.ericslutz.dev/accessibility/"
 navCurrent: "accessibility"
 innerPage: true
@@ -11,16 +11,18 @@ innerPage: true
   <section class="page-hero">
     <div class="wrap">
       <h1>Accessibility</h1>
-      <p>PumpSync is designed as an Apple platform app that follows system conventions for readable, permission-oriented health-data workflows.</p>
+      <p>PumpSync is an iPhone app that follows iOS conventions for readable, permission-oriented health-data workflows.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap content">
+    <div class="wrap">
+      <div class="content">
         <article class="content-block">
           <h2>Accessibility goals</h2>
+          <p>PumpSync targets WCAG 2.2 Level AA.</p>
           <p>PumpSync uses native SwiftUI and system controls where practical so the app can inherit platform accessibility behavior for forms, settings, permission prompts, and Apple Health workflows.</p>
-          <p>This page avoids claiming a feature is fully verified until release testing confirms it for the shipped build.</p>
+          <p>Conformance will be verified against the shipped build during release testing, and this page avoids claiming a feature is fully verified until that testing confirms it.</p>
         </article>
 
         <article class="content-block">
@@ -42,9 +44,25 @@ innerPage: true
         </article>
 
         <article class="content-block">
-          <h2>Report an accessibility issue</h2>
-          <p>Report accessibility issues through the <a href="/support/">support page</a>. Include your device, operating system version, assistive technology, app version, the screen or flow, and the expected result. Do not include Tandem passwords, screenshots containing health data, or other sensitive medical details.</p>
+          <h2>This website</h2>
+          <p>This website is part of PumpSync's accessibility scope and also targets WCAG 2.2 Level AA.</p>
+          <p>It is a static site with no JavaScript, semantic landmarks and headings, a skip link, visible focus indicators, and system light and dark color schemes.</p>
+          <p>Report website accessibility issues through the same path below.</p>
         </article>
+
+        <article class="content-block">
+          <h2>Known limitations</h2>
+          <p>No confirmed limitations are documented yet because release testing for the shipped build is still pending.</p>
+          <p>Limitations found during testing or reported by users will be listed here.</p>
+        </article>
+
+        <article class="content-block">
+          <h2>Report an accessibility issue</h2>
+          <p>Report accessibility issues through the <a href="/support/">support page</a>. Include your device, operating system version, assistive technology, app version, the screen or flow, and the expected result. {{ claims.doNotSend }}</p>
+          <p>We aim to respond to accessibility reports within five business days.</p>
+          <p>Statement last reviewed: August 3, 2026.</p>
+        </article>
+      </div>
     </div>
   </section>
 </main>
