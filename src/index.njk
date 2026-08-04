@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
-title: "PumpSync — Tandem Source to Apple Health Sync"
-description: "A privacy-first Tandem Source to Apple Health sync app with hosted and self-hosted backend options."
+title: "PumpSync — Pump Data to Apple Health Sync"
+description: "A privacy-first app that syncs insulin pump data to Apple Health, with hosted and self-hosted backend options."
 canonical: "https://pumpsync.ericslutz.dev/"
 navCurrent: "home"
 structuredData:
@@ -11,7 +11,7 @@ structuredData:
   operatingSystem: "iOS"
   applicationCategory: "HealthApplication"
   url: "https://pumpsync.ericslutz.dev/"
-  description: "A privacy-first iPhone app that syncs Tandem Source insulin and carbohydrate records into Apple Health, with hosted and self-hosted backend options."
+  description: "A privacy-first iPhone app that syncs insulin and carbohydrate records from your pump account into Apple Health, with hosted and self-hosted backend options."
   author:
     "@type": "Person"
     name: "Eric Slutz"
@@ -23,7 +23,7 @@ structuredData:
     <div class="hero-content">
       <div>
         <h1>PumpSync</h1>
-        <p class="lead">A privacy-first iPhone app that copies insulin and carbohydrate records from Tandem Source into Apple Health — without keeping your Tandem login or your health data on a server.</p>
+        <p class="lead">A privacy-first iPhone app that copies insulin and carbohydrate records from your pump account into Apple Health — without keeping your login or your health data on a server.</p>
         <div class="hero-actions">
           <a class="button primary" href="/support/">Get support</a>
           <a class="button secondary" href="/privacy/">Read privacy details</a>
@@ -38,7 +38,7 @@ structuredData:
           <li class="sync-line">
             <div class="sync-icon" aria-hidden="true">1</div>
             <div>
-              <p class="sync-step-title">Tandem Source</p>
+              <p class="sync-step-title">Your pump account</p>
               <p>Credentials stay in Keychain and are sent only during an active HTTPS sync request.</p>
             </div>
           </li>
@@ -46,7 +46,7 @@ structuredData:
             <div class="sync-icon" aria-hidden="true">2</div>
             <div>
               <p class="sync-step-title">PumpSync backend</p>
-              <p>The backend performs request-time sync work and does not persist Tandem credentials, tokens, raw events, or normalized samples.</p>
+              <p>The backend performs request-time sync work and does not persist your credentials, tokens, raw events, or normalized samples.</p>
             </div>
           </li>
           <li class="sync-line">
@@ -65,7 +65,7 @@ structuredData:
     <div class="wrap">
       <div class="section-head">
         <h2>Built for controlled health-data portability.</h2>
-        <p>PumpSync is designed around user control, Apple platform privacy protections, and minimal backend retention. You can start a sync yourself at any time, and after setup PumpSync also refreshes when the app opens and once daily in the background.</p>
+        <p>{{ claims.supportedSources }} PumpSync is designed around user control, Apple platform privacy protections, and minimal backend retention. You can start a sync yourself at any time, and after setup PumpSync also refreshes when the app opens and once daily in the background.</p>
       </div>
       <div class="feature-grid">
         <article class="feature">
@@ -74,7 +74,7 @@ structuredData:
         </article>
         <article class="feature">
           <h3>Device-only credentials</h3>
-          <p>Your Tandem username and password stay in the device Keychain and are sent only while a sync is running.</p>
+          <p>Your pump account credentials stay in the device Keychain and are sent only while a sync is running.</p>
         </article>
         <article class="feature">
           <h3>HealthKit permission first</h3>
@@ -103,11 +103,11 @@ structuredData:
         <p>The hosted service checks your App Store subscription and issues a short-lived access token. The self-hosted path lets you run your own backend and storage.</p>
       </div>
       <ul class="fact-list">
-        <li>The hosted backend keeps only operating records — subscription status, an app-generated install identifier, rate limits, and sync attempt logs — never your Tandem login or your health data.</li>
+        <li>The hosted backend keeps only operating records — subscription status, an app-generated install identifier, rate limits, and sync attempt logs — never your pump login or your health data.</li>
         <li>{{ claims.selfHostedDeletion }}</li>
         <li>There is no PumpSync account to create and no sign-in; hosted access is tied to your App Store subscription and the app's install identifier.</li>
-        <li>Sync requests that carry your Tandem credentials are processed immediately and never stored.</li>
-        <li>Want to see how it works before subscribing or connecting a real account? A public demo backend serves synthetic pump data — no Tandem account needed. See <a href="/support/">support</a> for how to try it.</li>
+        <li>Sync requests that carry your pump account credentials are processed immediately and never stored.</li>
+        <li>Want to see how it works before subscribing or connecting a real account? A public demo backend serves synthetic pump data — no pump account needed. See <a href="/support/">support</a> for how to try it.</li>
       </ul>
     </div>
   </section>

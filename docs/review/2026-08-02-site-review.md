@@ -21,6 +21,8 @@
 > - **In-app gap closed.** The app's sync-trigger disclosure was nested inside the initial-import section and disappeared after the first sync; it now lives in an always-visible section naming manual syncing alongside both automatic triggers.
 >
 > One item remains outside this repository's reach: the wiki commit removing duplicated policy text (**PRIV-12**) was delivered to the owner as a patch, since GitHub wikis are separate repositories the session credential cannot push to. The findings below are otherwise left as written on 2026-08-02 and describe the pre-fix state.
+>
+> **Superseded (2026-08-04).** SEO-04 suggested the home title "PumpSync — Tandem Source to Apple Health Sync". The site has since been made vendor-neutral so other pump services can be added without rewriting the marketing copy, so no title or hero copy names a vendor. `claims.supportedSources` now carries that statement in one place, and the paywall gained the Terms of Use and Privacy Policy links App Review guideline 3.1.2 requires.
 
 Commit reviewed: `8b5cbe7` on `claude/pump-sync-review-smap2g` (identical to `main` at review time).
 Built locally with Eleventy 3.x on Node 22; rendered testing against the local build via headless Chromium (Playwright 1.56.1), axe-core (npm latest), html-validate, and the W3C Nu validator (vnu.jar).

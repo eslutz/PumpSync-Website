@@ -177,8 +177,11 @@ test("support email links use request-specific subjects", async () => {
 test("canonical policy claims render from shared data on required pages", async () => {
   const claims = JSON.parse(await readFile("src/_data/claims.json", "utf8"));
   const requirements = {
-    "index.html": ["medicalDisclaimer", "healthkitNoAds", "selfHostedDeletion"],
-    "support/index.html": ["syncTriggers", "keychainStorage", "backendNonPersistence", "medicalDisclaimer", "doNotSend"],
+    // supportedSources is the only place the site states which pump services
+    // work. The rest of the copy is deliberately vendor-neutral, so if this
+    // sentence stops rendering, nothing else says it.
+    "index.html": ["medicalDisclaimer", "healthkitNoAds", "selfHostedDeletion", "supportedSources"],
+    "support/index.html": ["syncTriggers", "keychainStorage", "backendNonPersistence", "medicalDisclaimer", "doNotSend", "supportedSources"],
     "privacy/index.html": ["syncTriggers", "backendNonPersistence", "healthkitNoAds", "medicalDisclaimer"],
     "terms/index.html": ["syncTriggers"],
     "privacy/data-deletion/index.html": ["doNotSend", "selfHostedDeletion"],

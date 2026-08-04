@@ -1,7 +1,7 @@
 {
   "name": "PumpSync",
   "short_name": "PumpSync",
-  "description": "Public website for PumpSync, a privacy-first Tandem Source to Apple Health sync app.",
+  "description": "Public website for PumpSync, a privacy-first pump data to Apple Health sync app.",
   "id": "/",
   "scope": "/",
   "start_url": "/",

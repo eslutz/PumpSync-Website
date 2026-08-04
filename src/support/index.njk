@@ -11,7 +11,7 @@ innerPage: true
   <section class="page-hero">
     <div class="wrap">
       <h1>Support</h1>
-      <p>Get help with PumpSync Hosted, self-hosted backend setup, Tandem Source sync, Apple Health permissions, and privacy or deletion requests.</p>
+      <p>Get help with PumpSync Hosted, self-hosted backend setup, pump data sync, Apple Health permissions, and privacy or deletion requests.</p>
     </div>
   </section>
 
@@ -30,7 +30,7 @@ innerPage: true
           <h2>Before reporting a bug</h2>
           <ul>
             <li>Include the app version, operating system version, device model, and whether you are using PumpSync Hosted or a self-hosted backend.</li>
-            <li>Describe the step that failed: subscription restore, backend session, Tandem credential validation, Tandem sync, or Apple Health write.</li>
+            <li>Describe the step that failed: subscription restore, backend session, pump account sign-in, pump data sync, or Apple Health write.</li>
             <li>Include the backend URL only for self-hosted installations where sharing it is safe.</li>
             <li>{{ claims.doNotSend }}</li>
           </ul>
@@ -43,8 +43,8 @@ innerPage: true
             <p>{{ claims.syncTriggers }} Insulin and carbohydrate samples are each written only if you have granted that Apple Health permission.</p>
           </div>
           <div class="faq">
-            <h3>Can I try PumpSync without a Tandem account?</h3>
-            <p>Yes. A public demo backend serves deterministic synthetic insulin and carbohydrate data and never contacts Tandem, so you can see exactly how syncing behaves before subscribing or entering real credentials. It is useful both for App Review and testing and for anyone evaluating the app.</p>
+            <h3>Can I try PumpSync without a pump account?</h3>
+            <p>Yes. A public demo backend serves deterministic synthetic insulin and carbohydrate data and never contacts your pump service, so you can see exactly how syncing behaves before subscribing or entering real credentials. It is useful both for App Review and testing and for anyone evaluating the app.</p>
             <p>Point the app at the demo server instead of a real backend and use the published demo credentials; the <a href="https://github.com/eslutz/PumpSync/wiki/Demo-Mode" target="_blank" rel="noopener noreferrer">demo mode walkthrough</a> has the current server URL and step-by-step setup.</p>
             <p>One caution: the demo writes its synthetic samples into the real Apple Health store on your device. Use a test device, or delete the samples in the Apple Health app when you are done.</p>
           </div>
@@ -53,16 +53,20 @@ innerPage: true
             <p>No. PumpSync supports a hosted subscription path and a self-hosted path where you point the app at a backend you operate.</p>
           </div>
           <div class="faq">
-            <h3>Where are Tandem credentials stored?</h3>
+            <h3>Which pump services does PumpSync support?</h3>
+            <p>{{ claims.supportedSources }}</p>
+          </div>
+          <div class="faq">
+            <h3>Where are my pump account credentials stored?</h3>
             <p>{{ claims.keychainStorage }}</p>
           </div>
           <div class="faq">
-            <h3>Does PumpSync keep my Tandem health data on the backend?</h3>
+            <h3>Does PumpSync keep my pump data on the backend?</h3>
             <p>No. {{ claims.backendNonPersistence }}</p>
           </div>
           <div class="faq">
             <h3>How do I remove data?</h3>
-            <p>See the <a href="/privacy/data-deletion/">data deletion page</a> for Tandem credential removal, Apple Health access revocation, hosted metadata deletion, and self-hosted deletion guidance.</p>
+            <p>See the <a href="/privacy/data-deletion/">data deletion page</a> for pump account credential removal, Apple Health access revocation, hosted metadata deletion, and self-hosted deletion guidance.</p>
           </div>
           <div class="faq">
             <h3>Is PumpSync medical advice?</h3>
