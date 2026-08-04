@@ -12,6 +12,7 @@ This repository is the Eleventy source for the public PumpSync website at <https
 - Use Eleventy with Nunjucks templates from `src/` and plain generated HTML/CSS in `_site/`.
 - Keep shared page chrome, metadata, navigation, and footer behavior in `src/_includes/layouts/base.njk`.
 - Keep site styling in the existing stylesheet path for this repo.
+- Use the shared house typefaces: [Mona Sans](https://github.com/github/mona-sans) for body copy and [Hubot Sans](https://github.com/github/hubot-sans) for display text (`h1`, `h2`, the header wordmark, the sync-step numerals). Self-host them from `src/assets/fonts/` and declare them with `@font-face` plus a `preload` link; never load fonts from a CDN, which would contradict the privacy policy's no-third-party-request claim. Both are SIL OFL 1.1 with Reserved Font Names, so ship them unmodified and keep `src/assets/fonts/OFL.txt` beside them. Always keep a system-font fallback stack after the family name so text renders before the woff2 arrives.
 - Keep public routes slash-normalized in links and canonical URLs.
 - Do not add executable runtime JavaScript unless a concrete user-facing requirement needs it. Inert `application/ld+json` structured data is allowed: browsers parse it as metadata and never execute it.
 - Do not add visible App Store, TestFlight, or download links unless a real public URL exists.
@@ -50,6 +51,8 @@ Pushing to `main` triggers `.github/workflows/pages.yml`, builds the site, and d
 - Public URL: <https://pumpsync.ericslutz.dev>
 - Custom domain file: `src/CNAME`
 - Stylesheet: `src/assets/styles.css`
+- Fonts: `src/assets/fonts/MonaSans.woff2`, `src/assets/fonts/HubotSans.woff2`, `src/assets/fonts/OFL.txt`
+- Social card generator: `tools/social-card.py` (draws with the same two fonts; re-run it whenever the card's wording changes)
 - Deployment workflow: `.github/workflows/pages.yml`
 - Validation command: `npm test`
 - Required routes: `/`, `/support/`, `/privacy/`, `/terms/`, `/privacy/data-deletion/`, `/accessibility/`, `/age-suitability/`

@@ -1,3 +1,26 @@
+/* House typefaces, self-hosted to match the Gus site. Hubot Sans is the display
+   face; Mona Sans carries body copy. Both are SIL OFL 1.1 with Reserved Font
+   Names, so they ship unmodified — see assets/fonts/OFL.txt. Serving them from
+   this origin rather than a CDN is deliberate: the privacy policy states the
+   site makes no third-party requests. */
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/assets/fonts/MonaSans.woff2") format("woff2 supports variations"),
+       url("/assets/fonts/MonaSans.woff2") format("woff2");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hubot Sans";
+  src: url("/assets/fonts/HubotSans.woff2") format("woff2 supports variations"),
+       url("/assets/fonts/HubotSans.woff2") format("woff2");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light dark;
   --ink: #0b2438;
@@ -56,7 +79,9 @@ body {
   margin: 0;
   background: var(--surface);
   color: var(--ink);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-family: "Mona Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  /* Mona Sans carries an optical-size axis; let it track the font size. */
+  font-optical-sizing: auto;
   font-size: 1.0625rem;
   line-height: 1.58;
   text-rendering: optimizeLegibility;
@@ -193,6 +218,15 @@ h3 {
   line-height: 1.05;
   letter-spacing: 0;
   hyphens: auto;
+}
+
+/* Display surfaces only. Hubot Sans is built for headers, not for the long-form
+   prose on /privacy/ and /terms/, so h3 and body copy stay in Mona Sans. */
+h1,
+h2,
+.brand,
+.sync-icon {
+  font-family: "Hubot Sans", "Mona Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
 }
 
 h1 {

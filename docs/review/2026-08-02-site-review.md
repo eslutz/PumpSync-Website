@@ -23,6 +23,8 @@
 > One item remains outside this repository's reach: the wiki commit removing duplicated policy text (**PRIV-12**) was delivered to the owner as a patch, since GitHub wikis are separate repositories the session credential cannot push to. The findings below are otherwise left as written on 2026-08-02 and describe the pre-fix state.
 >
 > **Superseded (2026-08-04).** SEO-04 suggested the home title "PumpSync — Tandem Source to Apple Health Sync". The site has since been made vendor-neutral so other pump services can be added without rewriting the marketing copy, so no title or hero copy names a vendor. `claims.supportedSources` now carries that statement in one place, and the paywall gained the Terms of Use and Privacy Policy links App Review guideline 3.1.2 requires.
+>
+> **CSS-02 re-resolved (2026-08-04).** This finding offered two fixes — drop the never-loaded Inter, or self-host a woff2 — and the first was taken. That was the wrong branch: the owner's sibling website repositories already establish a house typeface, which nothing in this repo recorded. The site now self-hosts Mona Sans (body) and Hubot Sans (display) from `src/assets/fonts/`, preloaded and served same-origin, and `AGENTS.md` states the convention so it cannot be silently dropped a third time. This also retires the DES-01 nuance below: the first-choice font is now actually loaded, so hero metrics no longer depend on which fallback a visitor's platform picks.
 
 Commit reviewed: `8b5cbe7` on `claude/pump-sync-review-smap2g` (identical to `main` at review time).
 Built locally with Eleventy 3.x on Node 22; rendered testing against the local build via headless Chromium (Playwright 1.56.1), axe-core (npm latest), html-validate, and the W3C Nu validator (vnu.jar).
