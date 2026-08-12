@@ -1,7 +1,7 @@
 {
   "medicalDisclaimer": "PumpSync is not a medical device and does not provide medical advice, diagnosis, treatment, or dosing recommendations.",
   "healthkitNoAds": "PumpSync does not use HealthKit data for advertising, marketing, tracking, or data mining.",
-  "syncTriggers": "PumpSync syncs your pump data to Apple Health when you request a sync and, after initial setup, automatically when the app opens and during daily background updates.",
+  "syncTriggers": "PumpSync syncs your pump data to Apple Health when you request a sync and, after initial setup, automatically when the app opens and during iOS background refresh opportunities. Background updates target data that is less than four hours old, but iOS may delay them.",
   "backendNonPersistence": "The backend does not persist Tandem username, password, Tandem session cookies, Tandem access tokens, raw Tandem events, or normalized Tandem samples.",
   "keychainStorage": "The app stores your pump account credentials in Keychain with device-only accessibility. Credentials are sent to the backend only during an active HTTPS sync request.",
   "doNotSend": "Do not include pump account passwords or tokens, service tokens, App Store receipts, screenshots containing health data, or other sensitive medical details.",
