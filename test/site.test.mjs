@@ -223,6 +223,16 @@ test("privacy and support pages link to public data deletion instructions", asyn
   assert.match(support, /href="\/privacy\/data-deletion\/"/);
 });
 
+test("privacy policy discloses renewable device-session security data", async () => {
+  const privacy = await page("privacy/index.html");
+  const deletion = await page("privacy/data-deletion/index.html");
+
+  assert.match(privacy, /device public keys/);
+  assert.match(privacy, /one-way session-token verifiers/);
+  assert.match(privacy, /self-hosted authentication does not contact or depend on Apple/);
+  assert.match(deletion, /renewable device-session records/);
+});
+
 test("privacy contact path uses support page without direct email", async () => {
   // Deliberate editorial policy, not a bug guard: the privacy page routes
   // contact through /support/ instead of publishing a direct email address.
