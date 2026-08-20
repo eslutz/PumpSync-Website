@@ -229,8 +229,14 @@ test("privacy policy discloses renewable device-session security data", async ()
 
   assert.match(privacy, /device public keys/);
   assert.match(privacy, /one-way session-token verifiers/);
+  assert.match(privacy, /encrypted App Attest receipts/);
+  assert.match(privacy, /categorical fraud-risk outcomes/);
+  assert.match(privacy, /up to 30 days after that key becomes inactive/);
+  assert.match(privacy, /never used for advertising, cross-app profiling, or tracking/);
   assert.match(privacy, /self-hosted authentication does not contact or depend on Apple/);
   assert.match(deletion, /renewable device-session records/);
+  assert.match(deletion, /encrypted App Attest receipts/);
+  assert.match(deletion, /automatically deleted no later than 30 days after the key becomes inactive/);
 });
 
 test("privacy contact path uses support page without direct email", async () => {

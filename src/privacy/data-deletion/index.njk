@@ -20,8 +20,8 @@ innerPage: true
       <div class="content">
         <article class="content-block">
           <h2>Effective date</h2>
-          <p>Effective date: June 18, 2026</p>
-          <p>Last updated: August 4, 2026</p>
+          <p>Effective date: August 20, 2026</p>
+          <p>Last updated: August 20, 2026</p>
         </article>
 
         <article class="content-block">
@@ -59,7 +59,8 @@ innerPage: true
           <p>If you already deleted the app and no longer have the installation ID, email the same address anyway. Hosted metadata can be located from App Store subscription records where possible, and requests without an ID are handled on a best-effort basis.</p>
           <p>{{ claims.doNotSend }}</p>
           <p>Deletion covers metadata stored by the PumpSync-hosted backend associated with the subscription or installation, subject to records PumpSync must retain for security, fraud prevention, legal compliance, billing, dispute handling, or service integrity.</p>
-          <p>Hosted server-side metadata means the records listed in the <a href="/privacy/">privacy policy's</a> Backend storage section: subscription entitlement state, installation mappings, renewable device-session records, rate-limit events, sync attempt metadata, idempotency records, and redacted operational audit events.</p>
+          <p>Hosted server-side metadata means the records listed in the <a href="/privacy/">privacy policy's</a> Backend storage section: subscription entitlement state, installation mappings, renewable device-session records, encrypted App Attest receipts, categorical fraud-risk outcomes, rate-limit events, sync attempt metadata, idempotency records, and redacted operational audit events.</p>
+          <p>A completed deletion request removes the App Attest receipt and risk outcome associated with the deleted hosted key. Outside a deletion request, those records are automatically deleted no later than 30 days after the key becomes inactive.</p>
           <p>Deletion requests are processed within 30 days, and you will receive a reply confirming when deletion is complete.</p>
         </article>
 
