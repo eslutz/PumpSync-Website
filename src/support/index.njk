@@ -44,9 +44,11 @@ innerPage: true
           </div>
           <div class="faq">
             <h3>Can I try PumpSync without a pump account?</h3>
-            <p>Yes. A public demo backend serves deterministic synthetic insulin and carbohydrate data and never contacts your pump service, so you can see exactly how syncing behaves before subscribing or entering real credentials. It is useful both for App Review and testing and for anyone evaluating the app.</p>
-            <p>Point the app at the demo server instead of a real backend and use the published demo credentials; the <a href="https://github.com/eslutz/PumpSync/wiki/Demo-Mode" target="_blank" rel="noopener noreferrer">demo mode walkthrough</a> has the current server URL and step-by-step setup.</p>
-            <p>One caution: the demo writes its synthetic samples into the real Apple Health store on your device. Use a test device, or delete the samples in the Apple Health app when you are done.</p>
+            <p>There is currently no supported demo mode in the app. A pump account is required to retrieve real pump data. See the <a href="https://github.com/eslutz/PumpSync/wiki/Demo-Mode" target="_blank" rel="noopener noreferrer">demo mode status</a> for the current limitations.</p>
+          </div>
+          <div class="faq">
+            <h3>Can I inspect pump records without importing them?</h3>
+            <p>Yes. With a connected service and validated pump account, open Settings → Developer → Diagnostics → Inspect source data. Viewing or refreshing these records does not save them to Apple Health or change your import history.</p>
           </div>
           <div class="faq">
             <h3>Do I need a PumpSync subscription?</h3>

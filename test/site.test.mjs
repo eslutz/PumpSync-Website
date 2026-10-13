@@ -321,3 +321,31 @@ test("rendered pages do not expose stale repo-internal legal paths", async () =>
     assert.doesNotMatch(html, /docs\/legal\/privacy-policy\.md/);
   }
 });
+
+test("credential disclosures include validation, sync, and source inspection", async () => {
+  const privacy = await page("privacy/index.html");
+  const home = await page("index.html");
+  assert.match(privacy, /over HTTPS when validating your pump account, syncing, or inspecting source data/);
+  assert.match(home, /for account validation, sync, and source-data inspection/);
+  for (const html of [privacy, home]) {
+    assert.doesNotMatch(html, /credentials[^<]*only during an active HTTPS sync request/i);
+  }
+});
+
+test("support describes current inspection access without advertising a demo flow", async () => {
+  const support = await page("support/index.html");
+  assert.match(support, /currently no supported demo mode in the app/);
+  assert.match(support, /connected service and validated pump account/);
+  assert.match(support, /Settings → Developer → Diagnostics → Inspect source data/);
+  assert.match(support, /does not save them to Apple Health or change your import history/);
+  assert.doesNotMatch(support, /Sample Preview|published demo credentials|demo writes its synthetic|Point the app at the demo server|rollout is pending/);
+});
+
+test("privacy accurately describes inspection memory and background behavior", async () => {
+  const privacy = await page("privacy/index.html");
+  assert.match(privacy, /without saving them to Apple Health or persisting them to disk/);
+  assert.match(privacy, /Completed records can remain in memory when you leave the inspection screen or the app backgrounds/);
+  assert.match(privacy, /unfinished requests are cancelled/);
+  assert.match(privacy, /current connection and pump account before displaying them again/);
+  assert.doesNotMatch(privacy, /cleared when the preview closes|Sample Preview|isolated Keychain namespace|rollout pending/);
+});
