@@ -237,6 +237,8 @@ test("privacy policy discloses renewable device-session security data", async ()
   assert.match(deletion, /renewable device-session records/);
   assert.match(deletion, /encrypted App Attest receipts/);
   assert.match(deletion, /automatically deleted no later than 30 days after the key becomes inactive/);
+  assert.match(privacy, /deletion audit event remains and does not currently expire automatically/);
+  assert.match(deletion, /associated original App Store transaction identifiers/);
 });
 
 test("privacy contact path uses support page without direct email", async () => {
