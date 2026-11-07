@@ -87,11 +87,13 @@ innerPage: true
 
         <article class="content-block">
           <h2>Retention</h2>
-          <p>Tandem credentials remain on the user's device until the user deletes them in the app or deletes the app.</p>
+          <p>Tandem credentials remain in device-only Keychain storage until removed. Use Remove Credentials in PumpSync to remove the saved sign-in. Removing the app does not itself guarantee immediate Keychain deletion.</p>
           <p>The backend retains subscription, installation, device-session, rate-limit, sync metadata, and operational records only as long as needed to operate PumpSync, troubleshoot issues, meet legal obligations, and protect the service.</p>
           <p>Encrypted App Attest receipts and categorical fraud-risk outcomes are retained only while their hosted App Attest key is active and for up to 30 days after that key becomes inactive, then deleted.</p>
           <p>Some operational records do not currently have automatic time-based cleanup. An installation-scoped deletion request removes the associated records identified by the operator while preserving entitlement information needed by other installations. Interrupted deletion and coordination records remain until recovery is complete. Minimal completion audits are kept for 30 days and then removed by scheduled cleanup; scheduled maintenance removes transaction identifiers from older completion audits.</p>
-          <p>Raw Tandem events and normalized Tandem samples are discarded by the backend after the sync response is produced. The app discards raw and normalized Tandem payloads after Apple Health confirms the write.</p>
+          <p>Raw Tandem events and normalized Tandem samples are discarded by the backend after the sync response is produced. The app processes sync payloads in memory and releases them when an attempt ends, including failure or cancellation. Source inspection clears its in-memory records when closed or backgrounded. Confirmed Apple Health samples remain in Apple Health.</p>
+          <p>The app retains up to 200 app events, 50 device diagnostic reports, and 20 completed sync attempts plus an active attempt. Diagnostic summaries include operation times, outcomes, counts, and correlation references. Supported performance measurements are kept in protected local storage excluded from device backups. Duplicate-prevention identifiers and import times remain separately on the device; this local ledger does not provide coordination across devices.</p>
+          <p>Copying diagnostics or sharing a support bundle exports retained diagnostic information, not raw pump records or sign-in credentials. The app explains the export scope before sharing. Copies made outside PumpSync are controlled by the destination you choose.</p>
         </article>
 
         <article class="content-block">
