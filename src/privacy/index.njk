@@ -21,7 +21,7 @@ innerPage: true
         <article class="content-block">
           <h2>Effective date</h2>
           <p>Effective date: August 20, 2026</p>
-          <p>Last updated: August 20, 2026</p>
+          <p>Last updated: November 6, 2026</p>
         </article>
 
         <article class="content-block">
@@ -66,7 +66,7 @@ innerPage: true
 
         <article class="content-block">
           <h2>Backend storage</h2>
-          <p>PumpSync stores App Store subscription entitlement state for hosted users, app installation mappings, device public keys, one-way session-token verifiers, session expiry and replay state, encrypted App Attest receipts, categorical fraud-risk outcomes, rate-limit events, sync attempt metadata, idempotency records for non-credential endpoints, and redacted operational audit events.</p>
+          <p>PumpSync stores App Store subscription entitlement state for hosted users, app installation mappings, device public keys, one-way session-token verifiers, session expiry and replay state, encrypted App Attest receipts, categorical fraud-risk outcomes, rate-limit events, sync attempt metadata, idempotency records for non-credential endpoints, temporary coordination records, deletion recovery records, and operational audit events. Recovery records retain the identifiers and progress needed to complete an interrupted deletion and are removed when it finishes. Completed deletion audits contain only a keyed installation hash, completion time, outcome, environment, and record counts.</p>
           <p>PumpSync does not store plaintext renewable session credentials, device private keys, App Attest attestation objects, or assertions. App Attest receipts are encrypted before durable storage.</p>
           <p>PumpSync does not store Tandem credentials or Tandem health payloads in backend durable storage.</p>
         </article>
@@ -87,11 +87,13 @@ innerPage: true
 
         <article class="content-block">
           <h2>Retention</h2>
-          <p>Tandem credentials remain on the user's device until the user deletes them in the app or deletes the app.</p>
-          <p>The backend retains account, billing, device-session, rate-limit, sync metadata, and redacted operational records only as long as needed to operate PumpSync, troubleshoot issues, meet legal obligations, and protect the service.</p>
+          <p>Tandem credentials remain in device-only Keychain storage until removed. Use Remove Credentials in PumpSync to remove the saved sign-in. Removing the app does not itself guarantee immediate Keychain deletion.</p>
+          <p>The backend retains subscription, installation, device-session, rate-limit, sync metadata, and operational records only as long as needed to operate PumpSync, troubleshoot issues, meet legal obligations, and protect the service.</p>
           <p>Encrypted App Attest receipts and categorical fraud-risk outcomes are retained only while their hosted App Attest key is active and for up to 30 days after that key becomes inactive, then deleted.</p>
-          <p>Other operational records are kept until a data-deletion request removes them; there is currently no automatic time-based cleanup for those records.</p>
-          <p>Raw Tandem events and normalized Tandem samples are discarded by the backend after the sync response is produced. The app discards raw and normalized Tandem payloads after Apple Health confirms the write.</p>
+          <p>Some operational records do not currently have automatic time-based cleanup. An installation-scoped deletion request removes the associated records identified by the operator while preserving entitlement information needed by other installations. Interrupted deletion and coordination records remain until recovery is complete. Minimal completion audits are kept for 30 days and then removed by scheduled cleanup; scheduled maintenance removes transaction identifiers from older completion audits.</p>
+          <p>Raw Tandem events and normalized Tandem samples are discarded by the backend after the sync response is produced. The app processes sync payloads in memory and releases them when an attempt ends, including failure or cancellation. Source inspection clears its in-memory records when closed or backgrounded. Confirmed Apple Health samples remain in Apple Health.</p>
+          <p>The app retains up to 200 app events, 50 device diagnostic reports, and 20 completed sync attempts plus an active attempt. Diagnostic summaries include operation times, outcomes, counts, and correlation references. Supported performance measurements are kept in protected local storage excluded from device backups. Duplicate-prevention identifiers and import times remain separately on the device; this local ledger does not provide coordination across devices.</p>
+          <p>Copying diagnostics or sharing a support bundle exports retained diagnostic information, not raw pump records or sign-in credentials. The app explains the export scope before sharing. Copies made outside PumpSync are controlled by the destination you choose.</p>
         </article>
 
         <article class="content-block">
@@ -109,7 +111,7 @@ innerPage: true
 
         <article class="content-block">
           <h2>Security</h2>
-          <p>PumpSync uses HTTPS for network requests. Tandem credentials and renewable session credentials are stored on device in Keychain. Device private keys remain protected by App Attest or the Secure Enclave. Backend logs and audit events are designed to redact credential, token, transaction, and device-proof fields.</p>
+          <p>PumpSync uses HTTPS for network requests. Tandem credentials and renewable session credentials are stored on device in Keychain. Device private keys remain protected by App Attest or the Secure Enclave. Backend application logs are designed to redact credential, token, transaction, and device-proof fields. New completed deletion audits contain no original App Store transaction identifiers or deleted record keys.</p>
         </article>
 
         <article class="content-block">
